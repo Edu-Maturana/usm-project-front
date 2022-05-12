@@ -1,9 +1,11 @@
+import "./App.css";
+
+import Home from "./app/views/Home/Home";
+
 function App() {
   return (
     <div className="App">
-        <p>
-          Proyecto USM
-        </p>
+        <Home />
     </div>
   );
 }
