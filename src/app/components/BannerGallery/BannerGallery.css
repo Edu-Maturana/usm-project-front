@@ -1,0 +1,35 @@
+.product-data {
+    margin-bottom: 12rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.product-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: -2rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+}
+
+.p-button-primary {
+    background-color: transparent;
+    border-color: #fff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 1rem 2rem;
+}
+
+.p-galleria-item * {
+    border-radius: 10px;
+}
+
+.p-galleria.p-galleria-indicator-onitem .p-galleria-indicators{
+    background: transparent;
+}
+
+.p-galleria .p-galleria-caption {
+    background: transparent;
+}
