@@ -1,12 +1,11 @@
 .product-data {
     margin-bottom: 12rem;
-    font-family: 'DM Sans', sans-serif;
 }
 
 .product-title {
     font-size: 3rem;
     font-weight: 400;
-    margin-bottom: -2rem;
+    margin-bottom: -1.5rem;
 }
 
 .product-price {
