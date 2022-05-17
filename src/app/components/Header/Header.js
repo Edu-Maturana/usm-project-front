@@ -1,6 +1,7 @@
 import React from "react";
 import "primeicons/primeicons.css";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -16,11 +17,15 @@ export default function Header() {
 function MenuItems() {
   return (
     <div className="menu-items">
-      <p className="menu-item">Home</p>
-      <p className="menu-item">Productos</p>
+      <Link to="/" className="link">Home</Link>
+      <Link to="/products" className="link">Productos</Link>
       <p>|</p>
-      <i className="pi pi-shopping-cart" style={{'fontSize': '1.2em'}} />
-      <i className="pi pi-user" style={{'fontSize': '1.2em'}}/>
+      <Link to="/cart">
+        <i className="pi pi-shopping-cart link" style={{'fontSize': '1.2em'}}  />
+      </Link>
+      <Link to="/myaccount">
+        <i className="pi pi-user link" style={{'fontSize': '1.2em'}} />
+      </Link>
     </div>
   );
 }

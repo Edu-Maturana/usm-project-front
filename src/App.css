@@ -11,3 +11,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
