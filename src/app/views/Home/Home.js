@@ -11,7 +11,7 @@ export default function Home() {
     <div className='home'>
         <Header />
         <BannerGallery />
-        <ProductsList />
+        <ProductsList home={true} />
         <Footer />
     </div>
   )
