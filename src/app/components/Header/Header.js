@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo">
-        <h3>LOGO</h3>
+        <Link to="/" className="link logo-content">LOGO</Link >
       </div>
       <MenuItems />
     </div>
@@ -23,7 +23,7 @@ function MenuItems() {
       <Link to="/cart">
         <i className="pi pi-shopping-cart link" style={{'fontSize': '1.2em'}}  />
       </Link>
-      <Link to="/myaccount">
+      <Link to="/auth">
         <i className="pi pi-user link" style={{'fontSize': '1.2em'}} />
       </Link>
     </div>
