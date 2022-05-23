@@ -1,0 +1,6 @@
+.ProductPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1000px;
+}

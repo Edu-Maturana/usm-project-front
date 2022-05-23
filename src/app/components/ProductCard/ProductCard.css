@@ -7,21 +7,24 @@
   display: flex;
   flex-direction: column;
 }
+
 .p-card-img {
   display: flex;
   justify-content: center;
 }
+
 .p-img {
   border-radius: 10px;
   height: 200px;
   width: 200px;
+  margin-top: 20px;
 }
 
 .p-card-info {
-    padding-left: 0.5rem;
-    color: #000;
+  padding-left: 0.5rem;
+  color: #000;
 }
 
 .p-name {
-    margin-bottom: -1rem;
+  margin-bottom: -1rem;
 }
