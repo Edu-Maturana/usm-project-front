@@ -4,6 +4,7 @@ import "./App.css";
 
 import Home from "./app/views/Home/Home";
 import AllProducts from "./app/views/AllProducts/AllProducts";
+import ProductPage from "./app/views/ProductPage/ProductPage";
 import Auth from "./app/views/Auth/Auth";
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<AllProducts />} />
+        <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/auth" element={<Auth />} />
       </Routes>
     </div>

@@ -1,0 +1,30 @@
+.ProductContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.ProductContent img {
+    width: 350px;
+    height: 350px;
+    margin-right: 30px;
+}
+
+.ProductContent .Description {
+    color: #555353;
+}
+
+.ProductContent .Price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ProductContent .p-dropdown {
+    margin-right: 10px;
+}
+
+.ProductContent .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+}

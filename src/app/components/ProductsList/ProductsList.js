@@ -29,7 +29,9 @@ export default function ProductsList(props) {
       </div>
       <div className="p-products">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <Link to={`/products/${product.ID}`} key={product.id} className="ProductLink">
+            <ProductCard key={product.ID} product={product} />
+          </Link>
         ))}
       </div>
     </div>
