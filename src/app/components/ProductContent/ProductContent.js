@@ -19,7 +19,7 @@ export default function ProductContent() {
     useEffect(() => {
         getProduct(id)
             .then(product => setProduct(product));
-    }, []);
+    }, [id]);
 
     return (
         <div className="ProductContent">
