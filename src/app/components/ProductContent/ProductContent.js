@@ -30,7 +30,7 @@ export default function ProductContent() {
                 <p className='Description'>{product.description}</p>
                 <p className="Price">${product.price}</p>
                 <Dropdown value={quantity} options={quantities} onChange={(e) => setQuantity(e.value)} placeholder="1" />
-                <Button label="Añadir al carro" />
+                <Button label="Añadir al carrito" />
             </div>
         </div>
     )

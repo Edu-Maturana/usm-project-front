@@ -23,3 +23,16 @@
     margin-left: 30px;
     cursor: pointer;
 }
+
+.p-sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.p-sidebar p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #535353;
+    margin-top: -10px;
+}

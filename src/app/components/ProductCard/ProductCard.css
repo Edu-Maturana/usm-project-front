@@ -1,9 +1,8 @@
 .p-card {
   background-color: #fff;
-  width: 280px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 260px;
   margin-bottom: 2rem;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -14,14 +13,13 @@
 }
 
 .p-img {
-  border-radius: 10px;
   height: 200px;
   width: 200px;
   margin-top: 20px;
 }
 
 .p-card-info {
-  padding-left: 0.5rem;
+  padding-left: 1.8rem;
   color: #000;
 }
 
