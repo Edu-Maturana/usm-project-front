@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "primeicons/primeicons.css";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { Sidebar } from "primereact/sidebar";
+
+import Cart from "../Cart/Cart";
 
 export default function Header() {
   return (
@@ -18,7 +19,7 @@ export default function Header() {
 }
 
 function MenuItems() {
-  const [visible, setVisible] = useState(false);
+  const [cartVisible, setCartVisible] = useState(false);
   return (
     <div className="menu-items">
       <Link to="/" className="link">
@@ -31,19 +32,12 @@ function MenuItems() {
       <i
         className="pi pi-shopping-cart link"
         style={{ fontSize: "1.2em" }}
-        onClick={() => setVisible(true)}
+        onClick = {() => setCartVisible(true)}
       />
       <Link to="/auth">
         <i className="pi pi-user link" style={{ fontSize: "1.2em" }} />
       </Link>
-      <Sidebar
-        visible={visible}
-        position="right"
-        onHide={() => setVisible(false)}
-      >
-        <h2>Carrito</h2>
-        <p>No hay productos en el carrito</p>
-      </Sidebar>
+      <Cart visible={cartVisible} hide={setCartVisible}/>
     </div>
   );
 }
