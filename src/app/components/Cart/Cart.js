@@ -14,7 +14,7 @@ export default function Cart(props) {
 
     useEffect(() => {
         (async () => {
-            const productsTemp = [];
+            /*const productsTemp = [];
             let totalPriceTemp = 0;
             for await (const product of products) {
                 const data = await getProduct(product);
@@ -22,7 +22,7 @@ export default function Cart(props) {
                 totalPriceTemp += data.data.product.price;
             }
             setProductsData(productsTemp);
-            setTotalPrice(totalPriceTemp);
+            setTotalPrice(totalPriceTemp);*/
         })();
     }, [reloadCart, products]);
 
