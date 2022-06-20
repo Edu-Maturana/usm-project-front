@@ -1,4 +1,4 @@
-import { Toast } from 'primereact/toast';
+import { toast } from 'react-toastify';
 
 export function getProductsCart() {
     const cart = localStorage.getItem("cart");
@@ -13,18 +13,18 @@ export function getProductsCart() {
 
 export function addProductToCart(product) {
     const cart = getProductsCart();
-
     if (!cart) {
         localStorage.setItem("cart", product);
-        Toast.success("Producto añadido al carro");
+        toast.success("Producto añadido al carro");
     } else {
-        const ProductFound = cart.find((item) => item === product);
+        const ProductFound = cart.find((item) => item == product);
+        console.log(ProductFound);
         if (ProductFound) {
-            Toast.warning("El producto ya está en el carro");
+            toast.warning("El producto ya está en el carro");
         } else {
             cart.push(product);
             localStorage.setItem("cart", cart);
-            Toast.success("Producto añadido al carro");
+            toast.success("Producto añadido al carro");
         }
     }
 }

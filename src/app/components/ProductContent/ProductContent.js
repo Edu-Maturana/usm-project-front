@@ -7,6 +7,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 
 import { getProduct } from "../../api/products";
+import useCart from "../../hooks/useCart";
 
 export function ProductContent() {
   const id = window.location.pathname.split("/")[2];
@@ -19,9 +20,11 @@ export function ProductContent() {
     { label: "4", value: "4" },
     { label: "5", value: "5" },
   ];
+  const { addProduct } = useCart();
+
   useEffect(() => {
     getProduct(id).then((product) => setProduct(product));
-  }, [id]);
+  }, []);
 
   return (
     <div className="ProductContent">
@@ -40,7 +43,7 @@ export function ProductContent() {
             onChange={(e) => setQuantity(e.value)}
             placeholder="1"
           />
-          <Button label="Añadir al carrito" />
+          <Button className="buy" onClick={() => addProduct(product.ID)}>Añadir al carro</Button>
         </div>
       </div>
       <div className="CommentsSection">
