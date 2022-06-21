@@ -34,7 +34,7 @@ function MenuItems() {
       <>
        {
         products > 0 ? (
-          <div className="total">{products}</div>
+          <div className="total" onClick = {() => setCartVisible(true)}>{products}</div>
         ) : (
           null
         )
