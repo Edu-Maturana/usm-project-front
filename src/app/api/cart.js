@@ -18,7 +18,6 @@ export function addProductToCart(product) {
         toast.success("Producto añadido al carro");
     } else {
         const ProductFound = cart.find((item) => item == product);
-        console.log(ProductFound);
         if (ProductFound) {
             toast.warning("El producto ya está en el carro");
         } else {
@@ -44,7 +43,7 @@ export function clearCart() {
 
 export function removeProductFromCart(product) {
     const cart = getProductsCart();
-    const newCart = cart.filter((item) => item !== product);
+    const newCart = cart.filter((item) => item != product);
     localStorage.setItem("cart", newCart);
 
     if (newCart.length === 0) {
