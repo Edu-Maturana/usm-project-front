@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from "./app/views/Home/Home";
 import AllProducts from "./app/views/AllProducts/AllProducts";
 import ProductPage from "./app/views/ProductPage/ProductPage";
+import OrderPage from "./app/views/OrderPage/OrderPage";
 import Auth from "./app/views/Auth/Auth";
 
 import CartContext from "./app/context/CartContext";
@@ -37,13 +38,17 @@ export default function App() {
     removeProductFromCart(product);
     setReloadCart(true);
   };
+  const clearCartProducts = () => {
+    clearCart();
+    setReloadCart(true);
+  }
   const cartData = useMemo(
     () => ({
       products: totalProducts,
       addProduct: (product) => addProductCart(product),
       getProducts: getProductsCart,
       removeProduct: (product) => removeProductCart(product),
-      clearCart: () => clearCart(),
+      clearCart: () => clearCartProducts(),
     }),
     [totalProducts]
   );
@@ -56,6 +61,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<AllProducts />} />
           <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/order" element={<OrderPage />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </div>

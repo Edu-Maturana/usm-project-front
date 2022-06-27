@@ -48,7 +48,7 @@ function MenuItems() {
       <Link to="/auth">
         <i className="pi pi-user link" style={{ fontSize: "1.2em" }} />
       </Link>
-      <Cart visible={cartVisible} hide={setCartVisible}/>
+      <Cart visible={cartVisible} hide={setCartVisible} buttonsVisible={true}/>
     </div>
   );
 }
