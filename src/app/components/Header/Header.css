@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1000px;
+    min-width: 1000px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
 }

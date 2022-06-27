@@ -3,6 +3,7 @@ import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import "primeicons/primeicons.css";
 import "./Cart.css";
+import { Link } from "react-router-dom";
 
 
 import useCart from '../../hooks/useCart';
@@ -13,6 +14,7 @@ export default function Cart(props) {
     const { getProducts } = useCart();
     const products = getProducts();
     const [reloadCart, setReloadCart] = useState(false);
+    const buttonsVisible = props.buttonsVisible;
     return (
         <Sidebar
             visible={props.visible}
@@ -25,6 +27,7 @@ export default function Cart(props) {
                         products={products}
                         reloadCart={reloadCart}
                         setReloadCart={setReloadCart}
+                        buttonsVisible={buttonsVisible}
                     />
 
                 ) : (
@@ -41,7 +44,8 @@ export function ProductsCart(props) {
     const { products, reloadCart, setReloadCart } = props;
     const [productsData, setProductsData] = useState(null);
     const [totalPrice, setTotalPrice] = useState(0);
-    const { removeProduct } = useCart();
+    const { removeProduct, clearCart } = useCart();
+    const buttonsVisible = props.buttonsVisible;
     const whatsAppUrl = "https://wa.me/56996977928?text=";
 
     useEffect(() => {
@@ -65,6 +69,11 @@ export function ProductsCart(props) {
         setReloadCart(true);
         console.log(product);
     };
+
+    const clearProductsCart = () => {
+        clearCart();
+        setReloadCart(true);
+    }
 
     return (
         <div className="ProductsCart">
@@ -94,22 +103,32 @@ export function ProductsCart(props) {
                 </p>
             </div>
             <div className="cart-buttons">
-                <Button
-                    label="Limpiar carro"
-                    className="p-button-text"
-                    onClick={() => alert("Carro vaciado")}
-                />
-                <Button
-                    label="Hacer pedido"
-                    className="p-button"
-                    onClick={() => alert("Pedido realizado")}
-                />
+                {
+                    buttonsVisible ? (
+                        <>
+                            <Button
+                                label="Limpiar carro"
+                                className="p-button-text"
+                                onClick={() => clearProductsCart()}
+                            />
+                            <Link to="/order">
+                                <Button
+                                    label="Hacer pedido"
+                                    className="p-button"
+                                />
+                            </Link>
+                        </>
+                    ) : (
+                        null
+                    )
+                }
+
             </div>
         </div>
     );
 }
 
-function EmptyCart() {
+export function EmptyCart() {
     return (
         <div className="cart-empty">
             <p>No has añadido ningún producto aún.</p>
