@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
 }
 
 .ProductContent .ProductSection {
@@ -26,8 +28,8 @@
     font-weight: bold;
 }
 
-.ProductContent .p-dropdown {
-    margin-right: 10px;
+.ProductContent .HorizontalBar {
+    margin-right: 15px;
 }
 
 .ProductContent .p-button {

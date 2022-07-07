@@ -118,6 +118,7 @@ export function ProductsCart(props) {
                                 />
                             </Link>
                         </>
+                        
                     ) : (
                         null
                     )
