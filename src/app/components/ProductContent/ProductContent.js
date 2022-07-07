@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProductContent.css";
-import { Dropdown } from "primereact/dropdown";
+import { InputNumber } from 'primereact/inputnumber';
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
@@ -13,15 +13,7 @@ export function ProductContent() {
   const id = window.location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const quantities = [
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "4", value: "4" },
-    { label: "5", value: "5" },
-  ];
   const { addProduct } = useCart();
-
   useEffect(() => {
     getProduct(id).then((product) => setProduct(product));
   }, []);
@@ -37,11 +29,8 @@ export function ProductContent() {
           <p className="Description">{product.description}</p>
           <p className="Price">${product.price}</p>
           <p className="Description">Stock: {product.stock}</p>
-          <Dropdown
-            value={quantity}
-            options={quantities}
-            onChange={(e) => setQuantity(e.value)}
-            placeholder="1"
+          <InputNumber className="HorizontalBar" min={1} max={product.stock} value={quantity} onChange={(e) => setQuantity(e.value)}
+            showButtons buttonLayout="horizontal"decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
           />
           <Button className="buy" onClick={() => addProduct(product.ID)}>Añadir al carro</Button>
         </div>
@@ -125,7 +114,7 @@ function CommentForm(props) {
             autoResize
             maxlength="150"
           />
-          <Button label="Enviar"/>
+          <Button label="Enviar" />
         </div>
       </form>
     </div>
