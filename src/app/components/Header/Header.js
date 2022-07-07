@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "primeicons/primeicons.css";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import Cart from "../Cart/Cart";
 
 export default function Header() {
   return (
+  
     <div className="header">
       <div className="logo">
         <Link to="/" className="link logo-content">
@@ -22,6 +23,7 @@ export default function Header() {
 function MenuItems() {
   const [cartVisible, setCartVisible] = useState(false);
   const {products} = useCart();
+  useEffect(() => {window.scrollTo(0, 0)}, [])
   return (
     <div className="menu-items">
       <Link to="/" className="link">
