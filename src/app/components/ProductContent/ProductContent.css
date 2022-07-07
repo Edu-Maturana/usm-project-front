@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
 }
 
 .ProductContent .ProductSection {

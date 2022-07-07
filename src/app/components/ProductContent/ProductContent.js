@@ -30,7 +30,7 @@ export function ProductContent() {
           <p className="Price">${product.price}</p>
           <p className="Description">Stock: {product.stock}</p>
           <InputNumber className="HorizontalBar" min={1} max={product.stock} value={quantity} onChange={(e) => setQuantity(e.value)}
-            showButtons buttonLayout="horizontal"decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+            showButtons buttonLayout="horizontal"decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" size={1} 
           />
           <Button className="buy" onClick={() => addProduct(product.ID)}>Añadir al carro</Button>
         </div>
