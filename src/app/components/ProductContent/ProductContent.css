@@ -56,6 +56,15 @@
     margin-bottom: 10px;
 }
 
+.Comments .allCommentsButton {
+    transition: 0.1s;
+}
+
+.Comments .allCommentsButton:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
 small {
     margin-left: 10px;
     font-weight: 100;

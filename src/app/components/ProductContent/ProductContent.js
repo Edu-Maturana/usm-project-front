@@ -9,7 +9,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 
 import { getProduct } from "../../api/products";
-import { getLastComments } from "../../api/comments";
+import { getLastComments, getAllComments } from "../../api/comments";
 import useCart from "../../hooks/useCart";
 
 moment().locale('es');
@@ -35,7 +35,7 @@ export function ProductContent() {
           <p className="Price">${product.price}</p>
           <p className="Description">Stock: {product.stock}</p>
           <InputNumber className="HorizontalBar" min={1} max={product.stock} value={quantity} onChange={(e) => setQuantity(e.value)}
-            showButtons buttonLayout="horizontal"decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" size={1} 
+            showButtons buttonLayout="horizontal" decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" size={1}
           />
           <Button className="buy" onClick={() => addProduct(product.ID)}>Añadir al carro</Button>
         </div>
@@ -50,15 +50,22 @@ export function ProductContent() {
 
 function Comments(props) {
   let productId = props.productId;
+  
+  const [commentsHidden, setCommentsHidden] = useState(true);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getLastComments(productId).then((comments) => setComments(comments));
   }, []);
 
+  const showAllComments = () => {
+    setCommentsHidden(false);
+    getAllComments(productId).then((comments) => setComments(comments));
+  }
+
   return (
     <div className="Comments">
-      <h2>Valoraciones</h2>
+      <h2>⭐ Valoraciones ⭐</h2>
       {comments.length > 0 ? (
         comments.map((comment) => (
           <div className="Comment" key={comment.id}>
@@ -73,8 +80,15 @@ function Comments(props) {
           </div>
         ))
       ) : (
-        <p>No hay comentarios</p>
+        <p>No hay valoraciones</p>
       )}
+      <div>
+        {comments.length >= 3 && commentsHidden ?
+          <p className="allCommentsButton" onClick={() => showAllComments()}>👇 Ver todas las valoraciones</p>
+          : null
+        }
+
+      </div>
     </div>
   );
 }
@@ -87,12 +101,12 @@ function CommentForm(props) {
 
   return (
     <div className="CommentForm">
-      <h2>¡Dejanos tu valoración!</h2>
+      <h2>¡Dejanos tu valoración! 😎</h2>
       <form>
         <div className="form-group">
           <label htmlFor="user">Nombre</label>
           <InputText value={user} onChange={(e) => setUser(e.target.value)} />
-          <label htmlFor="comment">Valoración</label>
+          <label htmlFor="comment">Estrellas</label>
           <Rating
             value={stars}
             onChange={(e) => setStars(e.value)}
