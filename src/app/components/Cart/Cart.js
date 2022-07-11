@@ -41,20 +41,34 @@ export function ProductsCart(props) {
   const [totalPrice, setTotalPrice] = useState(0);
   const { removeProduct, clearCart } = useCart();
   const buttonsVisible = props.buttonsVisible;
-  // const whatsAppUrl = "https://wa.me/56996977928?text=";
 
   useEffect(() => {
     (async () => {
       const productsTemp = [];
+      let messageTemp = [];
       let totalPriceTemp = 0;
       for await (const product of products) {
         const data = await getProduct(product.id);
         productsTemp.push(data);
+        messageTemp = [
+          ...messageTemp,
+          {
+            id: data.ID,
+            name: data.name,
+            price: data.price,
+            quantity: product.quantity,
+          },
+        ];
         totalPriceTemp += data.price * product.quantity;
       }
       console.log(productsTemp);
       setProductsData(productsTemp);
       setTotalPrice(totalPriceTemp);
+      const message = {
+        products: messageTemp,
+        totalPrice: totalPriceTemp,
+      };
+      localStorage.setItem("message", JSON.stringify(message));
     })();
   }, [products, reloadCart]);
 
@@ -82,11 +96,7 @@ export function ProductsCart(props) {
                   Cantidad:{" "}
                   {products.find((product) => product.id == item.ID).quantity}
                 </p>
-                <p className="item-price">
-                  $
-                  {item.price *
-                    products.find((product) => product.id == item.ID).quantity}
-                </p>
+                <p className="item-price">${item.price}</p>
               </div>
 
               <i
