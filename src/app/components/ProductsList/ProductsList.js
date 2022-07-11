@@ -11,16 +11,17 @@ export default function ProductsList(props) {
   const home = props.home;
   const [orderBy, setOrderBy] = useState("");
   const orders = [
-    { value: "minor", label: "Menor precio" },
-    { value: "major", label: "Mayor precio" },
+    { value: "0", label: "Más recientes" },
+    { value: "1", label: "Menor precio" },
+    { value: "2", label: "Mayor precio" },
   ];
 
   useEffect(() => {
-    getProducts().then((response) => {
+    getProducts(orderBy).then((response) => {
       setProducts(response);
     });
-  }, []);
-
+  }, [orderBy]);
+ 
   return (
     <div className="productsList">
       <div className="plist-top">
@@ -35,11 +36,12 @@ export default function ProductsList(props) {
           <div className="products-page-header">
             <h2>Productos</h2>
             <Dropdown
-              value={orderBy}
               options={orders}
               onChange={(e) => setOrderBy(e.value)}
+              value={orderBy}
               placeholder="Ordenar por"
             />
+
           </div>
         )}
       </div>
@@ -57,3 +59,5 @@ export default function ProductsList(props) {
     </div>
   );
 }
+
+ 
