@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import 'moment/locale/es';
+import "moment/locale/es";
 import "./ProductContent.css";
-import { InputNumber } from 'primereact/inputnumber';
+import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
@@ -12,7 +12,7 @@ import { getProduct } from "../../api/products";
 import { getLastComments, getAllComments } from "../../api/comments";
 import useCart from "../../hooks/useCart";
 
-moment().locale('es');
+moment().locale("es");
 
 export function ProductContent() {
   const id = window.location.pathname.split("/")[2];
@@ -30,14 +30,32 @@ export function ProductContent() {
         <div className="ProductData">
           <p className="Description"> {`Productos > ${product.name}`}</p>
           <h2>{product.name}</h2>
+          <p className="Id">ID: {product.ID}</p>
           <Rating value={5} readOnly cancel={false} />
           <p className="Description">{product.description}</p>
           <p className="Price">${product.price}</p>
           <p className="Description">Stock: {product.stock}</p>
-          <InputNumber className="HorizontalBar" min={1} max={product.stock} value={quantity} onChange={(e) => setQuantity(e.value)}
-            showButtons buttonLayout="horizontal" decrementButtonClassName="p-button-danger" incrementButtonClassName="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" size={1}
+          <InputNumber
+            className="HorizontalBar"
+            min={1}
+            max={product.stock}
+            value={quantity}
+            onChange={(e) => setQuantity(e.value)}
+            showButtons
+            buttonLayout="horizontal"
+            decrementButtonClassName="p-button-danger"
+            incrementButtonClassName="p-button-success"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            size={1}
+            allowEmpty={false}
           />
-          <Button className="buy" onClick={() => addProduct(product.ID)}>Añadir al carro</Button>
+          <Button
+            className="buy"
+            onClick={() => addProduct(product.ID, quantity)}
+          >
+            Añadir al carro
+          </Button>
         </div>
       </div>
       <div className="CommentsSection">
@@ -50,7 +68,7 @@ export function ProductContent() {
 
 function Comments(props) {
   let productId = props.productId;
-  
+
   const [commentsHidden, setCommentsHidden] = useState(true);
   const [comments, setComments] = useState([]);
 
@@ -61,17 +79,19 @@ function Comments(props) {
   const showAllComments = () => {
     setCommentsHidden(false);
     getAllComments(productId).then((comments) => setComments(comments));
-  }
+  };
 
   return (
     <div className="Comments">
       <h2>⭐ Valoraciones ⭐</h2>
       {comments.length > 0 ? (
         comments.map((comment) => (
-          <div className="Comment" key={comment.id}>
+          <div className="Comment" key={comment.ID}>
             <h3>
               <b className="User">{comment.customer}</b>
-              <small className="Date">{moment(comment.CreatedAt).startOf('day').fromNow()}</small>
+              <small className="Date">
+                {moment(comment.CreatedAt).startOf("day").fromNow()}
+              </small>
             </h3>
             <p className="Stars">
               <Rating value={comment.stars} readOnly cancel={false} />
@@ -83,11 +103,11 @@ function Comments(props) {
         <p>No hay valoraciones</p>
       )}
       <div>
-        {comments.length >= 3 && commentsHidden ?
-          <p className="allCommentsButton" onClick={() => showAllComments()}>👇 Ver todas las valoraciones</p>
-          : null
-        }
-
+        {comments.length >= 3 && commentsHidden ? (
+          <p className="allCommentsButton" onClick={() => showAllComments()}>
+            👇 Ver todas las valoraciones
+          </p>
+        ) : null}
       </div>
     </div>
   );
@@ -101,7 +121,7 @@ function CommentForm(props) {
 
   return (
     <div className="CommentForm">
-      <h2>¡Dejanos tu valoración! 😎</h2>
+      <h2>¡Dejanos tu comentario! 😎</h2>
       <form>
         <div className="form-group">
           <label htmlFor="user">Nombre</label>
@@ -112,7 +132,9 @@ function CommentForm(props) {
             onChange={(e) => setStars(e.value)}
             cancel={false}
           />
-          <label htmlFor="comment">Comentario<small>(máx. 150 caracteres)</small></label>
+          <label htmlFor="comment">
+            Comentario<small>(máx. 150 caracteres)</small>
+          </label>
           <InputTextarea
             rows={5}
             cols={30}

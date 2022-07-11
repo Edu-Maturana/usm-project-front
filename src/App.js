@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./app/views/Home/Home";
 import AllProducts from "./app/views/AllProducts/AllProducts";
@@ -21,7 +21,7 @@ import {
 
 export default function App() {
   const [totalProducts, setTotalProducts] = useState(0);
-  const [reloadUser, setReloadUser] = useState(false);
+  //const [reloadUser, setReloadUser] = useState(false);
   const [reloadCart, setReloadCart] = useState(false);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function App() {
     setReloadCart(false);
   }, [reloadCart]);
 
-  const addProductCart = (product) => {
-    addProductToCart(product);
+  const addProductCart = (product, quantity) => {
+    addProductToCart(product, quantity);
     setReloadCart(true);
   };
 
@@ -41,11 +41,11 @@ export default function App() {
   const clearCartProducts = () => {
     clearCart();
     setReloadCart(true);
-  }
+  };
   const cartData = useMemo(
     () => ({
       products: totalProducts,
-      addProduct: (product) => addProductCart(product),
+      addProduct: (product, quantity) => addProductCart(product, quantity),
       getProducts: getProductsCart,
       removeProduct: (product) => removeProductCart(product),
       clearCart: () => clearCartProducts(),
@@ -56,7 +56,7 @@ export default function App() {
   return (
     <CartContext.Provider value={cartData}>
       <div className="App">
-      <ToastContainer position="top-center" />
+        <ToastContainer position="top-center" />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<AllProducts />} />
