@@ -11,12 +11,12 @@ export function getProductsCart() {
   }
 }
 
-export function addProductToCart(product, quantity) {
-  console.log(product, quantity);
+export function addProductToCart(id, quantity) {
+  console.log(id, quantity);
   const cart = getProductsCart();
 
   let productAdded = {
-    product: product,
+    id: id,
     quantity: quantity,
   };
 
@@ -24,10 +24,7 @@ export function addProductToCart(product, quantity) {
     localStorage.setItem("cart", JSON.stringify([productAdded]));
     toast.success("Producto añadido al carro");
   } else {
-    console.log(cart.find((item) => item.product == productAdded.product));
-    const ProductFound = cart.find(
-      (item) => item.product == productAdded.product
-    );
+    const ProductFound = cart.find((item) => item.id == productAdded.id);
     if (ProductFound) {
       toast.warning("El producto ya está en el carro");
     } else {
@@ -51,10 +48,10 @@ export function clearCart() {
   localStorage.removeItem("cart");
 }
 
-export function removeProductFromCart(product) {
+export function removeProductFromCart(id) {
   const cart = getProductsCart();
-  const newCart = cart.filter((item) => item != product);
-  localStorage.setItem("cart", newCart);
+  const newCart = cart.filter((item) => item.id != id);
+  localStorage.setItem("cart", JSON.stringify(newCart));
 
   if (newCart.length === 0) {
     localStorage.removeItem("cart");

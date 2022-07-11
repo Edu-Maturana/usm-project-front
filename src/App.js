@@ -29,8 +29,8 @@ export default function App() {
     setReloadCart(false);
   }, [reloadCart]);
 
-  const addProductCart = (product, quantity) => {
-    addProductToCart(product, quantity);
+  const addProductCart = (id, quantity) => {
+    addProductToCart(id, quantity);
     setReloadCart(true);
   };
 
@@ -45,9 +45,9 @@ export default function App() {
   const cartData = useMemo(
     () => ({
       products: totalProducts,
-      addProduct: (product, quantity) => addProductCart(product, quantity),
+      addProduct: (id, quantity) => addProductCart(id, quantity),
       getProducts: getProductsCart,
-      removeProduct: (product) => removeProductCart(product),
+      removeProduct: (id) => removeProductCart(id),
       clearCart: () => clearCartProducts(),
     }),
     [totalProducts]
