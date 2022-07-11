@@ -34,14 +34,16 @@ export default function App() {
     setReloadCart(true);
   };
 
-  const removeProductCart = (product) => {
-    removeProductFromCart(product);
+  const removeProductCart = (id) => {
+    removeProductFromCart(id);
     setReloadCart(true);
   };
+
   const clearCartProducts = () => {
     clearCart();
     setReloadCart(true);
   };
+
   const cartData = useMemo(
     () => ({
       products: totalProducts,

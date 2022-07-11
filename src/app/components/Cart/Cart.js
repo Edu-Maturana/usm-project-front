@@ -41,7 +41,7 @@ export function ProductsCart(props) {
   const [totalPrice, setTotalPrice] = useState(0);
   const { removeProduct, clearCart } = useCart();
   const buttonsVisible = props.buttonsVisible;
-  const whatsAppUrl = "https://wa.me/56996977928?text=";
+  // const whatsAppUrl = "https://wa.me/56996977928?text=";
 
   useEffect(() => {
     (async () => {
@@ -49,20 +49,19 @@ export function ProductsCart(props) {
       let totalPriceTemp = 0;
       for await (const product of products) {
         const data = await getProduct(product.id);
-        console.log(data);
         productsTemp.push(data);
-        totalPriceTemp += data.price;
+        totalPriceTemp += data.price * product.quantity;
       }
       console.log(productsTemp);
       setProductsData(productsTemp);
       setTotalPrice(totalPriceTemp);
     })();
-  }, [reloadCart, products]);
+  }, [products, reloadCart]);
 
-  const removeProductFromCart = (product) => {
-    removeProduct(product);
+  const removeProductFromCart = (id) => {
+    setProductsData(null);
+    removeProduct(id);
     setReloadCart(true);
-    console.log(product);
   };
 
   const clearProductsCart = () => {
@@ -79,7 +78,15 @@ export function ProductsCart(props) {
               <img src={item.image} alt={item.name} className="item-img" />
               <div className="cart-item-info">
                 <h3 className="item-name">{item.name}</h3>
-                <p className="item-price">${item.price}</p>
+                <p className="item-price">
+                  Cantidad:{" "}
+                  {products.find((product) => product.id == item.ID).quantity}
+                </p>
+                <p className="item-price">
+                  $
+                  {item.price *
+                    products.find((product) => product.id == item.ID).quantity}
+                </p>
               </div>
 
               <i
