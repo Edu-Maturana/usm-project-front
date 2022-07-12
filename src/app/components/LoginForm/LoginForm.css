@@ -1,62 +1,66 @@
 .Login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
-    width: 300px;
-    margin-bottom: 20px;
+.login-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  border: none;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
 .Label {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .form-group input {
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 0 10px;
-    margin-bottom: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
 }
 
 .submit-form {
-    width: 300px;
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #0d0c0e;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #0d0c0e;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .submit-form:hover {
-    background-color: #911296;
-    transition: 0.2s;
-    color: #fff;
+  background-color: #911296;
+  transition: 0.2s;
+  color: #fff;
 }
 
 .link {
-    text-align: center;
-    color: #080708;
-    font-weight: bold;
-    margin-top: 20px;
-    text-decoration: none;
+  text-align: left;
+  color: #080708;
+  font-size: 14px;
+  margin-top: 20px;
+  text-decoration: none;
 }
 
+.link span {
+  text-decoration: underline;
+  font-weight: bold;
+}
