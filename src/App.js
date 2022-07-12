@@ -21,6 +21,7 @@ import {
   clearCart,
   removeProductFromCart,
 } from "./app/api/cart";
+import Dashboard from "./app/views/Dashboard/Dashboard";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -102,6 +103,7 @@ export default function App() {
             <Route path="/products/:id" element={<ProductPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="/admin" element={<Auth />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       </CartContext.Provider>
