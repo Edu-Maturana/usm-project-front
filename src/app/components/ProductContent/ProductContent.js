@@ -23,6 +23,13 @@ export function ProductContent() {
     getProduct(id).then((product) => setProduct(product));
   }, []);
 
+  const getStock = (product) => {
+    if (product.stock === 100) {
+      return 0;
+    }
+    return product.stock;
+  }
+
   return (
     <div className="ProductContent">
       <div className="ProductSection">
@@ -34,11 +41,12 @@ export function ProductContent() {
           <Rating value={5} readOnly cancel={false} />
           <p className="Description">{product.description}</p>
           <p className="Price">${product.price}</p>
-          <p className="Description">Stock: {product.stock}</p>
+          <p className="Description">Stock: {getStock(product) === 0 ? "Agotado" : getStock(product)}</p>
           <InputNumber
+          disabled={getStock(product) === 0}
             className="HorizontalBar"
             min={1}
-            max={product.stock}
+            max={getStock(product)}
             value={quantity}
             onChange={(e) => setQuantity(e.value)}
             showButtons
@@ -51,11 +59,13 @@ export function ProductContent() {
             allowEmpty={false}
           />
           <Button
+          disabled={getStock(product) === 0}
             className="buy"
             onClick={() => addProduct(product.ID, quantity)}
           >
             Añadir al carro
           </Button>
+          
         </div>
       </div>
       <div className="CommentsSection">
