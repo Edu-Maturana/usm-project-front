@@ -13,7 +13,7 @@ export default function Auth() {
         <TabPanel header="Iniciar sesión">
           <LoginForm />
         </TabPanel>
-        <TabPanel header="Registrarse">
+        <TabPanel header="Registrar Admin">
           <RegisterForm />
         </TabPanel>
       </TabView>
