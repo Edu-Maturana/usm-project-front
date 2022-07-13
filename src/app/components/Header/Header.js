@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "primeicons/primeicons.css";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import Cart from "../Cart/Cart";
 
 export default function Header() {
   return (
-  
     <div className="header">
       <div className="logo">
         <Link to="/" className="link logo-content">
@@ -22,8 +21,10 @@ export default function Header() {
 
 function MenuItems() {
   const [cartVisible, setCartVisible] = useState(false);
-  const {products} = useCart();
-  useEffect(() => {window.scrollTo(0, 0)}, [])
+  const { products } = useCart();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="menu-items">
       <Link to="/" className="link">
@@ -34,23 +35,18 @@ function MenuItems() {
       </Link>
       <p>|</p>
       <>
-       {
-        products > 0 ? (
-          <div className="total" onClick = {() => setCartVisible(true)}>{products}</div>
-        ) : (
-          null
-        )
-      }
-      <i
-        className="pi pi-shopping-cart link"
-        style={{ fontSize: "1.2em" }}
-        onClick = {() => setCartVisible(true)}
-      />
+        {products > 0 ? (
+          <div className="total" onClick={() => setCartVisible(true)}>
+            {products}
+          </div>
+        ) : null}
+        <i
+          className="pi pi-shopping-cart link"
+          style={{ fontSize: "1.2em" }}
+          onClick={() => setCartVisible(true)}
+        />
       </>
-      <Link to="/auth">
-        <i className="pi pi-user link" style={{ fontSize: "1.2em" }} />
-      </Link>
-      <Cart visible={cartVisible} hide={setCartVisible} buttonsVisible={true}/>
+      <Cart visible={cartVisible} hide={setCartVisible} buttonsVisible={true} />
     </div>
       );
     }

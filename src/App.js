@@ -21,8 +21,7 @@ import {
   clearCart,
   removeProductFromCart,
 } from "./app/api/cart";
-import { getUserData } from "./app/api/user";
-
+import Dashboard from "./app/views/Dashboard/Dashboard";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -34,22 +33,6 @@ export default function App() {
     setTotalProducts(countProductsCart());
     setReloadCart(false);
   }, [reloadCart]);
-
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      getUserData().then((res) => {
-        setAuth({
-          token,
-          user: res.data.user,
-        });
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-      });
-    } else {
-      setAuth(null);
-    }
-    setReloadUser(false);
-  }, [reloadUser]);
 
   useEffect(() => {
     setTotalProducts(countProductsCart());
@@ -119,7 +102,8 @@ export default function App() {
             <Route path="/products" element={<AllProducts />} />
             <Route path="/products/:id" element={<ProductPage />} />
             <Route path="/order" element={<OrderPage />} />
-            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin" element={<Auth />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       </CartContext.Provider>

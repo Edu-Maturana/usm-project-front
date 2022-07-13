@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "primeicons/primeicons.css";
 import "./ProductsList.css";
 import { Link } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
@@ -21,15 +22,16 @@ export default function ProductsList(props) {
       setProducts(response);
     });
   }, [orderBy]);
- 
+
   return (
     <div className="productsList">
       <div className="plist-top">
         {home ? (
           <>
             <h2>Últimos productos</h2>
-            <Link to="/products" className="link">
+            <Link to="/products" className="all-products-link">
               Ver todo
+              <i className="pi pi-angle-right" style={{ fontSize: "1.2em" }} />
             </Link>
           </>
         ) : (
@@ -41,7 +43,6 @@ export default function ProductsList(props) {
               value={orderBy}
               placeholder="Ordenar por"
             />
-
           </div>
         )}
       </div>
@@ -59,5 +60,3 @@ export default function ProductsList(props) {
     </div>
   );
 }
-
- 

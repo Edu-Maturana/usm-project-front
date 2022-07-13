@@ -6,11 +6,10 @@ import useAuth from "../../hooks/useAuth";
 import { LogIn } from "../../api/auth";
 
 import "./LoginForm.css";
-import { Link } from "react-router-dom";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-  const {login} = useAuth();
+  const { login } = useAuth();
   return (
     <div className="Login">
       <Formik
@@ -23,7 +22,8 @@ export default function Login() {
             .then((res) => {
               console.log(res);
               setLoading(true);
-              window.location.href = "/Dashboard";
+              window.location.href = "/dashboard";
+              console.log(res);
               login(res.token);
             })
             .catch((err) => {
@@ -35,23 +35,23 @@ export default function Login() {
       >
         {({ isSubmitting }) => (
           <Form className="login-form">
-            <h2 className="title">Log In</h2>
+            <h2 className="title">Iniciar sesión</h2>
             <div className="form-group">
-              <label className="Label">Correo</label>
+              <label className="Label">Email</label>
               <Field type="email" name="email" className="Input" />
             </div>
             <div className="form-group">
               <label className="Label">Contraseña</label>
               <Field type="password" name="password" className="Input" />
             </div>
-            <button type="submit" loading={loading} className="submit-form" disabled={isSubmitting}>
-              {
-                loading ? "..." : "Log In"
-              }
+            <button
+              type="submit"
+              loading={loading}
+              className="submit-form"
+              disabled={isSubmitting}
+            >
+              {loading ? "..." : "Ingresar"}
             </button>
-            <Link className="link" to="/signup">
-              Quiere registrar un nuevo administrador? Click aquí.
-            </Link>
           </Form>
         )}
       </Formik>
