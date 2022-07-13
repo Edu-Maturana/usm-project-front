@@ -52,5 +52,5 @@ function MenuItems() {
       </Link>
       <Cart visible={cartVisible} hide={setCartVisible} buttonsVisible={true}/>
     </div>
-  );
-}
+      );
+    }
