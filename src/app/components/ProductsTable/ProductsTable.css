@@ -14,3 +14,33 @@
 .longTextEditor {
   min-width: 400px;
 }
+
+.newProduct {
+  margin-bottom: 20px;
+}
+
+.dialogForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ProductsTableHeader {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.dialogFormRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.dialogFormRow .p-inputtext {
+  width: 500px;
+}
+
+.dialogFormRow .p-inputtextarea {
+  height: 150px;
+}
