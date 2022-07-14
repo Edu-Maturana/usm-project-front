@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./token";
 
 const apiUrl = "http://localhost:8080/api/v1";
 
@@ -13,8 +14,21 @@ export const getProduct = async (id) => {
 };
 
 export const createProduct = async (product) => {
-  const response = await axios.post(`${apiUrl}/products`, product);
-  return response.data;
+  const token = getToken();
+  const response = await axios.post(
+    `${apiUrl}/products`,
+    {
+      ...product,
+      stock: Number(product.stock),
+      price: Number(product.price),
+    },
+    {
+      headers: {
+        token,
+      },
+    }
+  );
+  console.log(response.data);
 };
 
 export const updateProduct = async (product) => {
