@@ -1,0 +1,14 @@
+.DashboardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboardButtons * {
+  margin-left: 10px;
+}
+
+.dashboardButtons .p-button {
+  margin-left: 5px;
+}

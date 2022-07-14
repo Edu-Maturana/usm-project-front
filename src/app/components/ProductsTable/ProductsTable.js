@@ -67,7 +67,7 @@ export default function ProductsTable() {
       await getProducts(0).then((data) => {
         setProducts(data);
       });
-      toast.success("Producto creado correctamente", 200);
+      toast.success("Producto creado");
     },
   });
 
@@ -83,6 +83,7 @@ export default function ProductsTable() {
 
   const onRowEditSave = async (product) => {
     await updateProduct(product);
+    toast.success("Producto actualizado");
     getProducts(0).then((data) => {
       setProducts(data);
     });
@@ -132,6 +133,14 @@ export default function ProductsTable() {
 
   const imageTemplate = (product) => {
     return <img src={product.image} alt="product" />;
+  };
+
+  const stockTemplate = (product) => {
+    if (product.stock == 100) {
+      return <p>0</p>;
+    }
+
+    return <p>{product.stock}</p>;
   };
 
   const priceTemplate = (product) => {
@@ -200,7 +209,12 @@ export default function ProductsTable() {
           className="productsTableImage"
           editor={textEditor}
         />
-        <Column field="stock" header="Stock" editor={numberEditor} />
+        <Column
+          field="stock"
+          header="Stock"
+          body={stockTemplate}
+          editor={numberEditor}
+        />
         <Column
           field="price"
           header="Precio"

@@ -1,3 +1,7 @@
+.p-datatable {
+  min-width: 1330px;
+}
+
 .productsTable .productsTableImage img {
   width: 50px;
   height: 50px;
@@ -13,6 +17,10 @@
 
 .longTextEditor {
   min-width: 400px;
+}
+
+.numberEditor {
+  max-width: 80px;
 }
 
 .newProduct {
