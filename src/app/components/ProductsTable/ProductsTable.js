@@ -51,12 +51,7 @@ export default function ProductsTable() {
         errors.image = "La imagen es requerida";
       }
 
-      if (
-        !values.stock ||
-        values.stock < 0 ||
-        isNaN(values.stock) ||
-        values.stock > 50
-      ) {
+      if (!values.stock || values.stock < 0 || isNaN(values.stock)) {
         errors.stock = "El stock es requerido";
       }
 
@@ -66,13 +61,13 @@ export default function ProductsTable() {
 
       return errors;
     },
-    onSubmit: (values) => {
-      createProduct(values);
+    onSubmit: async (values) => {
+      await createProduct(values);
       setDisplayForm(false);
-      toast.success("Producto creado correctamente");
-      getProducts(0).then((data) => {
+      await getProducts(0).then((data) => {
         setProducts(data);
       });
+      toast.success("Producto creado correctamente", 200);
     },
   });
 
@@ -277,7 +272,7 @@ export default function ProductsTable() {
             {getFormErrorMessage("price")}
           </div>
           <div className="dialogFormRow">
-            <Button label="Guardar" icon="pi pi-check" />
+            <Button label="Guardar" />
           </div>
         </form>
       </Dialog>

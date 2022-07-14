@@ -20,11 +20,12 @@ export default function Login() {
             password: values.password,
           })
             .then((res) => {
-              console.log(res);
-              setLoading(true);
-              window.location.href = "/dashboard";
-              console.log(res);
               login(res.token);
+              setTimeout(() => {
+                setLoading(true);
+                window.location.href = "/dashboard";
+              }, 1000);
+              setSubmitting(false);
             })
             .catch((err) => {
               console.log(err);
