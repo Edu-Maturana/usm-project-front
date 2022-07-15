@@ -16,9 +16,10 @@ export default function ProductsList(props) {
     { value: "1", label: "Menor precio" },
     { value: "2", label: "Mayor precio" },
   ];
+  const limit = home ? 6 : 20;
 
   useEffect(() => {
-    getProducts(orderBy).then((response) => {
+    getProducts(orderBy, limit).then((response) => {
       setProducts(response);
     });
   }, [orderBy]);
