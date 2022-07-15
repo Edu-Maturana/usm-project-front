@@ -37,7 +37,7 @@ export default function ProductsList(props) {
           </>
         ) : (
           <div className="products-page-header">
-            <h2>Productos</h2>
+            <h2>Todos los productos</h2>
             <Dropdown
               options={orders}
               onChange={(e) => setOrderBy(e.value)}

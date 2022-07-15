@@ -27,7 +27,6 @@ import Dashboard from "./app/views/Dashboard/Dashboard";
 export default function App() {
   const [auth, setAuth] = useState(undefined);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [reloadUser, setReloadUser] = useState(false);
   const [reloadCart, setReloadCart] = useState(false);
 
   useEffect(() => {
@@ -57,12 +56,11 @@ export default function App() {
     }
   };
 
-  const data = useMemo(
+  const authData = useMemo(
     () => ({
       auth,
       login,
       logout,
-      setReloadUser,
     }),
     [auth]
   );
@@ -80,7 +78,7 @@ export default function App() {
   const updateProductCart = (id, quantity) => {
     updateProductFromCart(id, quantity);
     setReloadCart(true);
-  }
+  };
 
   const clearCartProducts = () => {
     clearCart();
@@ -100,7 +98,7 @@ export default function App() {
   );
 
   return (
-    <AuthContext.Provider value={data}>
+    <AuthContext.Provider value={authData}>
       <CartContext.Provider value={cartData}>
         <div className="App">
           <ToastContainer position="top-center" />
