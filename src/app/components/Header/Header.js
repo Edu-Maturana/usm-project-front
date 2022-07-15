@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Logo from "../../../assets/images/Logo.svg";
 import "primeicons/primeicons.css";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -10,8 +11,8 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/" className="link logo-content">
-          LOGO
+        <Link to="/">
+          <img src={Logo} className="logo-style"/>
         </Link>
       </div>
       <MenuItems />

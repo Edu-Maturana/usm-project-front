@@ -2,16 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
   max-width: 1000px;
   min-width: 1000px;
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
 }
 
-.header .logo .logo-content {
-  color: #000;
-  font-size: 1.5rem;
-  font-weight: bold;
+.header .logo .logo-style{
+  width: 65px;
+  height: 65px;
 }
 
 .menu-items {
