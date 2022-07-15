@@ -14,7 +14,6 @@ export const getProduct = async (id) => {
 };
 
 export const createProduct = async (product) => {
-  const token = getToken();
   const response = await axios.post(
     `${apiUrl}/products`,
     {
@@ -24,7 +23,7 @@ export const createProduct = async (product) => {
     },
     {
       headers: {
-        token,
+        token: getToken(),
       },
     }
   );
@@ -36,11 +35,21 @@ export const updateProduct = async (product) => {
     ...product,
     stock: Number(product.stock),
     price: Number(product.price),
-  });
+  },
+    {
+      headers: {
+        token: getToken(),
+      }
+    }
+  );
   return response.data;
 };
 
 export const deleteProduct = async (id) => {
-  const response = await axios.delete(`${apiUrl}/products/${id}`);
+  const response = await axios.delete(`${apiUrl}/products/${id}`, {
+    headers: {
+      token: getToken(),
+    }
+  });
   return response.data;
 };
