@@ -104,11 +104,11 @@ function Comments(props) {
 
   const confirmDeletion = (comment) => {
     confirmDialog({
-      message: "¿Está seguro de que desea eliminar este comentario?",
+      message: "¿Está seguro(a) de que desea eliminar este comentario?",
       header: "Eliminar comentario",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        deleteComment(comment.ID, token).then(() => {
+        deleteComment(comment.ID).then(() => {
           toast.success("Comentario eliminado");
           getAllComments(productId).then((comments) => setComments(comments));
         }
