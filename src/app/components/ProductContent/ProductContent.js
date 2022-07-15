@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/es";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+
 import "./ProductContent.css";
 import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
@@ -9,7 +12,11 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 
 import { getProduct } from "../../api/products";
-import { getLastComments, getAllComments } from "../../api/comments";
+import {
+  getLastComments,
+  getAllComments,
+  createComment,
+} from "../../api/comments";
 import useCart from "../../hooks/useCart";
 
 moment().locale("es");
@@ -28,7 +35,7 @@ export function ProductContent() {
       return 0;
     }
     return product.stock;
-  }
+  };
 
   return (
     <div className="ProductContent">
@@ -41,9 +48,11 @@ export function ProductContent() {
           <Rating value={5} readOnly cancel={false} />
           <p className="Description">{product.description}</p>
           <p className="Price">${product.price}</p>
-          <p className="Description">Stock: {getStock(product) === 0 ? "Agotado" : getStock(product)}</p>
+          <p className="Description">
+            Stock: {getStock(product) === 0 ? "Agotado" : getStock(product)}
+          </p>
           <InputNumber
-          disabled={getStock(product) === 0}
+            disabled={getStock(product) === 0}
             className="HorizontalBar"
             min={1}
             max={getStock(product)}
@@ -59,18 +68,16 @@ export function ProductContent() {
             allowEmpty={false}
           />
           <Button
-          disabled={getStock(product) === 0}
+            disabled={getStock(product) === 0}
             className="buy"
             onClick={() => addProduct(product.ID, quantity)}
           >
             Añadir al carro
           </Button>
-          
         </div>
       </div>
-      <div className="CommentsSection">
+      <div>
         <Comments productId={id} />
-        <CommentForm productId={id} />
       </div>
     </div>
   );
@@ -92,66 +99,113 @@ function Comments(props) {
   };
 
   return (
-    <div className="Comments">
-      <h2>⭐ Valoraciones ⭐</h2>
-      {comments.length > 0 ? (
-        comments.map((comment) => (
-          <div className="Comment" key={comment.ID}>
-            <h3>
-              <b className="User">{comment.customer}</b>
-              <small className="Date">
-                {moment(comment.CreatedAt).startOf("day").fromNow()}
-              </small>
-            </h3>
-            <p className="Stars">
-              <Rating value={comment.stars} readOnly cancel={false} />
+    <div className="CommentsSection">
+      <div className="Comments">
+        <h2>⭐ Valoraciones ⭐</h2>
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <div className="Comment" key={comment.ID}>
+              <h3>
+                <b className="User">{comment.customer}</b>
+                <small className="Date">
+                  {moment(comment.CreatedAt).format("D MMMM YYYY")}
+                </small>
+              </h3>
+              <p className="Stars">
+                <Rating value={comment.stars} readOnly cancel={false} />
+              </p>
+              <p>{comment.content}</p>
+            </div>
+          ))
+        ) : (
+          <p>No hay valoraciones</p>
+        )}
+        <div>
+          {comments.length >= 3 && commentsHidden ? (
+            <p className="allCommentsButton" onClick={() => showAllComments()}>
+              👇 Ver todas las valoraciones
             </p>
-            <p>{comment.content}</p>
-          </div>
-        ))
-      ) : (
-        <p>No hay valoraciones</p>
-      )}
-      <div>
-        {comments.length >= 3 && commentsHidden ? (
-          <p className="allCommentsButton" onClick={() => showAllComments()}>
-            👇 Ver todas las valoraciones
-          </p>
-        ) : null}
+          ) : null}
+        </div>
       </div>
+      <CommentForm productId={productId} setComments={setComments} />
     </div>
   );
 }
 
 function CommentForm(props) {
-  let productId = props.productId;
-  const [user, setUser] = useState("");
-  const [comment, setComment] = useState("");
-  const [stars, setStars] = useState(0);
+  let { productId, setComments } = props;
+
+  const formik = useFormik({
+    initialValues: {
+      customer: "",
+      stars: 0,
+      content: "",
+      product_id: productId,
+    },
+    validate: (values) => {
+      const errors = {};
+
+      if (!values.customer) {
+        errors.customer = "El nombre es requerido";
+      }
+
+      if (!values.content) {
+        errors.content = "El comentario es requerido";
+      }
+
+      if (values.stars == 0) {
+        errors.stars = "La valoración es requerida";
+      }
+
+      return errors;
+    },
+    onSubmit: async (values) => {
+      await createComment(values);
+      toast.success("Gracias por tu comentario");
+      setComments(await getLastComments(productId));
+    },
+  });
+
+  const isFormFieldValid = (name) =>
+    !!(formik.touched[name] && formik.errors[name]);
+  const getFormErrorMessage = (name) => {
+    return (
+      isFormFieldValid(name) && (
+        <small className="p-error">{formik.errors[name]}</small>
+      )
+    );
+  };
 
   return (
     <div className="CommentForm">
       <h2>¡Dejanos tu comentario! 😎</h2>
-      <form>
+      <form className="form" onSubmit={formik.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="user">Nombre</label>
-          <InputText value={user} onChange={(e) => setUser(e.target.value)} />
-          <label htmlFor="comment">Estrellas</label>
+          {getFormErrorMessage("customer")}
+          <InputText
+            name="customer"
+            value={formik.values.customer}
+            onChange={formik.handleChange}
+            placeholder="Nombre"
+          />
+          {getFormErrorMessage("stars")}
           <Rating
-            value={stars}
-            onChange={(e) => setStars(e.value)}
+            name="stars"
+            value={formik.values.stars}
+            onChange={formik.handleChange}
             cancel={false}
           />
-          <label htmlFor="comment">
-            Comentario<small>(máx. 150 caracteres)</small>
-          </label>
+          {getFormErrorMessage("content")}
           <InputTextarea
+            name="content"
             rows={5}
             cols={30}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
             autoResize
             maxlength="150"
+            value={formik.values.content}
+            onChange={formik.handleChange}
+            placeholder="Comentario (máx. 150 caracteres)"
           />
           <Button label="Enviar" />
         </div>

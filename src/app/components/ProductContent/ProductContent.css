@@ -49,6 +49,11 @@
   padding-top: 30px;
 }
 
+.CommentsSection .Comments {
+  display: flex;
+  flex-direction: column;
+}
+
 .p-rating .p-rating-icon.pi-star-fill {
   color: #000;
 }
@@ -59,10 +64,6 @@
   border-radius: 10px;
   padding: 0px 20px;
   margin-bottom: 10px;
-}
-
-.Comments .allCommentsButton {
-  transition: 0.1s;
 }
 
 .Comments .allCommentsButton:hover {
@@ -85,9 +86,9 @@ small {
   padding: 10px 20px;
 }
 
-.form-group label {
-  margin-top: 10px;
-  margin-bottom: 5px;
+.form-group .p-rating {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .form-group .p-inputtextarea {
