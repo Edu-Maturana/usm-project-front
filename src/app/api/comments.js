@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./token";
 
 const apiUrl = "http://localhost:8080/api/v1";
 
@@ -22,3 +23,16 @@ export const createComment = async (comment) => {
   console.log(response.data);
   return response.data;
 };
+
+export const deleteComment = async (id) => {
+  const response = await axios.delete(`${apiUrl}/comments/${id}`
+    , {
+      headers: {
+        token: getToken(),
+        }
+      }
+    );
+  console.log(response.data);
+  return response.data;
+}
+

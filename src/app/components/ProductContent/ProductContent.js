@@ -9,15 +9,18 @@ import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { InputTextarea } from "primereact/inputtextarea";
 
-import { getProduct } from "../../api/products";
+import { deleteProduct, getProduct } from "../../api/products";
 import {
   getLastComments,
   getAllComments,
   createComment,
+  deleteComment
 } from "../../api/comments";
 import useCart from "../../hooks/useCart";
+import { getToken } from "../../api/token";
 
 moment().locale("es");
 
@@ -88,6 +91,7 @@ function Comments(props) {
 
   const [commentsHidden, setCommentsHidden] = useState(true);
   const [comments, setComments] = useState([]);
+  const token = getToken();
 
   useEffect(() => {
     getLastComments(productId).then((comments) => setComments(comments));
@@ -97,6 +101,21 @@ function Comments(props) {
     setCommentsHidden(false);
     getAllComments(productId).then((comments) => setComments(comments));
   };
+
+  const confirmDeletion = (comment) => {
+    confirmDialog({
+      message: "¿Está seguro de que desea eliminar este comentario?",
+      header: "Eliminar comentario",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        deleteComment(comment.ID, token).then(() => {
+          toast.success("Comentario eliminado");
+          getAllComments(productId).then((comments) => setComments(comments));
+        }
+        );
+      }
+    });
+  }
 
   return (
     <div className="CommentsSection">
@@ -110,6 +129,13 @@ function Comments(props) {
                 <small className="Date">
                   {moment(comment.CreatedAt).format("D MMMM YYYY")}
                 </small>
+                {token ? (
+                  <i
+                    className="pi pi-trash delete-item"
+                    style={{ fontSize: "1.2em" }}
+                    onClick={() => confirmDeletion(comment)}
+                  />
+                ) : null}
               </h3>
               <p className="Stars">
                 <Rating value={comment.stars} readOnly cancel={false} />
@@ -129,6 +155,7 @@ function Comments(props) {
         </div>
       </div>
       <CommentForm productId={productId} setComments={setComments} />
+      <ConfirmDialog></ConfirmDialog>
     </div>
   );
 }
