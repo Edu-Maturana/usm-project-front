@@ -18,6 +18,7 @@ import {
   getProductsCart,
   addProductToCart,
   countProductsCart,
+  updateProductFromCart,
   clearCart,
   removeProductFromCart,
 } from "./app/api/cart";
@@ -76,6 +77,11 @@ export default function App() {
     setReloadCart(true);
   };
 
+  const updateProductCart = (id, quantity) => {
+    updateProductFromCart(id, quantity);
+    setReloadCart(true);
+  }
+
   const clearCartProducts = () => {
     clearCart();
     setReloadCart(true);
@@ -87,6 +93,7 @@ export default function App() {
       addProduct: (id, quantity) => addProductCart(id, quantity),
       getProducts: getProductsCart,
       removeProduct: (id) => removeProductCart(id),
+      updateProduct: (id, quantity) => updateProductCart(id, quantity),
       clearCart: () => clearCartProducts(),
     }),
     [totalProducts]

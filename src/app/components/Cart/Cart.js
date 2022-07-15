@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar } from "primereact/sidebar";
+import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import "primeicons/primeicons.css";
 import "./Cart.css";
@@ -8,8 +9,9 @@ import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import { getProduct } from "../../api/products";
 
+
 export default function Cart(props) {
-  const { getProducts } = useCart();
+  const { getProducts, updateProduct } = useCart();
   const products = getProducts();
   const [reloadCart, setReloadCart] = useState(false);
   const buttonsVisible = props.buttonsVisible;
@@ -26,6 +28,7 @@ export default function Cart(props) {
           products={products}
           reloadCart={reloadCart}
           setReloadCart={setReloadCart}
+          updateProduct={updateProduct}
           buttonsVisible={buttonsVisible}
         />
       ) : (
@@ -36,11 +39,24 @@ export default function Cart(props) {
 }
 
 export function ProductsCart(props) {
-  const { products, reloadCart, setReloadCart } = props;
+  const id = window.location.pathname.split("/")[2];
+  const { products, reloadCart, setReloadCart, updateProduct } = props;
   const [productsData, setProductsData] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const { removeProduct, clearCart } = useCart();
+  const [product, setProduct] = useState({});
   const buttonsVisible = props.buttonsVisible;
+
+  useEffect(() => {
+    getProduct(id).then((product) => setProduct(product));
+  }, []);
+
+  const getStock = (product) => {
+    if (product.stock === 100) {
+      return 0;
+    }
+    return product.stock;
+  }
 
   useEffect(() => {
     (async () => {
@@ -83,6 +99,11 @@ export function ProductsCart(props) {
     setReloadCart(true);
   };
 
+  const updateProductFromCart = (id, quantity) => {
+    updateProduct(id, quantity);
+    setReloadCart(true);
+  }
+
   return (
     <div className="ProductsCart">
       <div className="cart-items">
@@ -97,6 +118,25 @@ export function ProductsCart(props) {
                   {products.find((product) => product.id == item.ID).quantity}
                 </p>
                 <p className="item-price">${item.price}</p>
+                <InputNumber
+                  disabled={getStock(product) === 0}
+                  className="HorizontalBar"
+                  min={1}
+                  max={getStock(product)}
+                  value={products.find((product) => product.id == item.ID).quantity}
+                  onChange={(e) => {
+                    updateProductFromCart(item.ID, e.value);
+                  }
+                  }
+                  showButtons
+                  buttonLayout="horizontal"
+                  decrementButtonClassName="p-button-danger"
+                  incrementButtonClassName="p-button-success"
+                  incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"
+                  size={1}
+                  allowEmpty={false}
+                />
               </div>
 
               <i

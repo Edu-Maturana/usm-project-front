@@ -44,6 +44,17 @@ export function countProductsCart() {
   }
 }
 
+export function updateProductFromCart(id, quantity) {
+  const cart = getProductsCart();
+  if (cart) {
+    const productFound = cart.find((item) => item.id == id);
+    if (productFound) {
+      productFound.quantity = quantity;
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }
+}
+
 export function clearCart() {
   localStorage.removeItem("cart");
 }

@@ -20,14 +20,23 @@
 .cart-item .item-img {
   width: 40px;
   height: 40px;
-  margin: 0 10px 0 0;
+  margin: -110px 10px 0 0;
+}
+
+.cart-item .HorizontalBar {
+  margin: 10px 0;
+}
+
+.cart-item .HorizontalBar .p-button{
+  background-color: #000000;
+  border: 1px solid #000000;
 }
 
 .cart-item .delete-item {
   width: 10px;
   height: 10px;
   cursor: pointer;
-  margin-top: -55px;
+  margin-top: -130px;
   margin-left: 5px;
 }
 
