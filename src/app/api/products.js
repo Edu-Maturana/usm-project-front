@@ -3,8 +3,8 @@ import { getToken } from "./token";
 
 const apiUrl = "http://localhost:8080/api/v1";
 
-export const getProducts = async (sort) => {
-  const response = await axios.get(`${apiUrl}/products?priceSort=${sort}`);
+export const getProducts = async (sort, limit = 20) => {
+  const response = await axios.get(`${apiUrl}/products?priceSort=${sort}&limit=${limit}`);
   return response.data;
 };
 
