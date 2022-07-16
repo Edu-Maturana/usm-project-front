@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import { getProduct } from "../../api/products";
 
-
 export default function Cart(props) {
   const { getProducts, updateProduct } = useCart();
   const products = getProducts();
@@ -56,7 +55,7 @@ export function ProductsCart(props) {
       return 0;
     }
     return product.stock;
-  }
+  };
 
   useEffect(() => {
     (async () => {
@@ -102,7 +101,7 @@ export function ProductsCart(props) {
   const updateProductFromCart = (id, quantity) => {
     updateProduct(id, quantity);
     setReloadCart(true);
-  }
+  };
 
   return (
     <div className="ProductsCart">
@@ -117,17 +116,18 @@ export function ProductsCart(props) {
                   Cantidad:{" "}
                   {products.find((product) => product.id == item.ID).quantity}
                 </p>
-                <p className="item-price">${item.price}</p>
+                <p className="item-price">Precio unitario: ${item.price}</p>
                 <InputNumber
                   disabled={getStock(product) === 0}
                   className="HorizontalBar"
                   min={1}
                   max={getStock(product)}
-                  value={products.find((product) => product.id == item.ID).quantity}
+                  value={
+                    products.find((product) => product.id == item.ID).quantity
+                  }
                   onChange={(e) => {
                     updateProductFromCart(item.ID, e.value);
-                  }
-                  }
+                  }}
                   showButtons
                   buttonLayout="horizontal"
                   decrementButtonClassName="p-button-danger"
