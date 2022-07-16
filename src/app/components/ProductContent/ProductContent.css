@@ -54,6 +54,13 @@
   flex-direction: column;
 }
 
+.CommentsSection .Comments .delete-item{
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .p-rating .p-rating-icon.pi-star-fill {
   color: #000;
 }
