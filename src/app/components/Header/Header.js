@@ -16,8 +16,9 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo">
-        <Link to="/">
+        <Link to="/" className="link-header">
           <img src={Logo} className="logo-style" />
+          <h1 className="titulo">Los Rolls de la Negra</h1>
         </Link>
       </div>
       <MenuItems token={token} />
