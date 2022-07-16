@@ -9,9 +9,20 @@
   font-weight: 400;
 }
 
+.header .logo .link-header {
+  text-decoration: none;
+}
+
 .header .logo .logo-style {
   width: 65px;
   height: 65px;
+}
+
+.header .logo .titulo {
+  color: #000;
+  font-size: 2rem;
+  margin-left: 70px;
+  margin-top: -58px;
 }
 
 .menu-items {
