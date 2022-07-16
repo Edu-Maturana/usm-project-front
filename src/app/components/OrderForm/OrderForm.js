@@ -79,8 +79,8 @@ export default function OrderForm() {
           name="name"
           value={formik.values.name}
           onChange={(e) => {
-            formik.handleChange(e);
             saveData(formik.values.saveData);
+            formik.handleChange(e);
           }}
           autoFocus
           className={classNames({ "p-invalid": isFormFieldValid("name") })}
