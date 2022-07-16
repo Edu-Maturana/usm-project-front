@@ -4,8 +4,10 @@ import "./OrderForm.css";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
+import { Checkbox } from "primereact/checkbox";
 
 import buildMessage from "../../api/whatsapp";
+import { saveUserData } from "../../api/user";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({});
@@ -58,6 +60,12 @@ export default function OrderForm() {
     );
   };
 
+  const saveData = (value) => {
+    if (value) {
+      saveUserData(formik.values.name, formik.values.address);
+    }
+  };
+
   return (
     <form className="LoginForm" onSubmit={formik.handleSubmit}>
       <div className="Login-container">
@@ -82,7 +90,19 @@ export default function OrderForm() {
           autoFocus
           className={classNames({ "p-invalid": isFormFieldValid("address") })}
         />
-        <Button label="Hacer pedido" />
+        <div className="field-checkbox saveData">
+          <Checkbox
+            inputId="saveData"
+            name="saveData"
+            checked={formik.values.saveData}
+            onChange={(e) => {
+              saveData(e.checked);
+              formik.setFieldValue("saveData", e.checked);
+            }}
+          />
+          <label htmlFor="saveData"> Guardar datos para futuras compras</label>
+        </div>
+        <Button type="submit" label="Hacer pedido" />
       </div>
     </form>
   );
