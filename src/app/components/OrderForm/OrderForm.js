@@ -7,17 +7,19 @@ import { classNames } from "primereact/utils";
 import { Checkbox } from "primereact/checkbox";
 
 import buildMessage from "../../api/whatsapp";
-import { saveUserData } from "../../api/user";
+import { getUserData, saveUserData } from "../../api/user";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({});
   const message = JSON.parse(localStorage.getItem("message"));
+  const userData = getUserData();
   const whatsAppUrl = "https://wa.me/56935299088?text=";
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      address: "",
+      name: userData ? userData.name : "",
+      address: userData ? userData.address : "",
+      saveData: userData ? true : false,
     },
     validate: (values) => {
       const errors = {};
@@ -76,7 +78,10 @@ export default function OrderForm() {
           id="name"
           name="name"
           value={formik.values.name}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            formik.handleChange(e);
+            saveData(formik.values.saveData);
+          }}
           autoFocus
           className={classNames({ "p-invalid": isFormFieldValid("name") })}
         />
@@ -86,7 +91,10 @@ export default function OrderForm() {
           id="address"
           name="address"
           value={formik.values.address}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            formik.handleChange(e);
+            saveData(formik.values.saveData);
+          }}
           autoFocus
           className={classNames({ "p-invalid": isFormFieldValid("address") })}
         />
@@ -96,8 +104,8 @@ export default function OrderForm() {
             name="saveData"
             checked={formik.values.saveData}
             onChange={(e) => {
-              saveData(e.checked);
-              formik.setFieldValue("saveData", e.checked);
+              formik.handleChange(e);
+              saveData(e.target.checked);
             }}
           />
           <label htmlFor="saveData"> Guardar datos para futuras compras</label>

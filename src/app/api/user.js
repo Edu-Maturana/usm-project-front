@@ -9,5 +9,5 @@ export const saveUserData = async (name, address) => {
 
 export const getUserData = () => {
   const data = localStorage.getItem("user");
-  return data;
+  return JSON.parse(data);
 };
