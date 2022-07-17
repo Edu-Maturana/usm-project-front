@@ -1,7 +1,7 @@
 import axios from "axios";
+import { config } from "../../config";
 
 export const LogIn = async (user) => {
-  const url = "http://localhost:8080/api/v1/auth/login";
-  const response = await axios.post(url, user);
+  const response = await axios.post(config.apiUrl, user);
   return response.data;
 };
