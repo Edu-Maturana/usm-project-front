@@ -4,3 +4,31 @@
     justify-content: center;
     width: 1000px;
 }
+
+@media (max-width: 1000px) {
+    .AllProducts {
+        width: 800px;
+    }
+}
+
+@media (max-width: 800px) {
+    .AllProducts {
+        width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .AllProducts {
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .AllProducts {
+        width: 320px;
+    }
+    .p-card .p-img {
+        width: 100px;
+        height: 100px;
+    }
+}

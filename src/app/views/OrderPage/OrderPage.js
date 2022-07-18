@@ -18,7 +18,7 @@ export default function OrderPage() {
       <div className="wrapper">
         {products.length > 0 ? (
           <div className="FormStyle">
-            <ProductsCart
+            <ProductsCart className="Products"
               products={products}
               reloadCart={reloadCart}
               setReloadCart={setReloadCart}
@@ -27,7 +27,7 @@ export default function OrderPage() {
               onlyPriceVisible={true}
               orderPage={true}
             />
-            <OrderForm />
+          <OrderForm />
           </div>
         ) : (
           <EmptyCart />

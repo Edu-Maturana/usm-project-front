@@ -4,3 +4,27 @@
     justify-content: center;
     width: 1000px;
 }
+
+@media (max-width: 1000px) {
+    .ProductPage {
+        width: 800px;
+    }
+}
+
+@media (max-width: 800px) {
+    .ProductPage {
+        width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ProductPage {
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .ProductPage {
+        width: 320px;
+    }
+}

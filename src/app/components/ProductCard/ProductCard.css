@@ -26,3 +26,11 @@
 .p-name {
   margin-bottom: -1rem;
 }
+
+@media (max-width: 600px) {
+  .p-img {
+    height: 150px;
+    width: 150px;
+  }
+}
+

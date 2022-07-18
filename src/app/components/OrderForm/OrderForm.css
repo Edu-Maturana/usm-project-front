@@ -22,3 +22,66 @@
 .saveData {
   margin-bottom: 20px;
 }
+
+@media (max-width: 1000px) {
+  .Login-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 70px;
+    min-width: 100%;
+  }
+  .Login-container .p-inputtext {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+  .Login-container .p-button {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  .saveData {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .Login-container {
+    margin-left: 20px;
+  }
+  .Login-container .p-inputtext {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+  .Login-container .p-button {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Login-container {
+    margin-left: 0;
+  }
+  .Login-container .p-inputtext {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+  .Login-container .p-button {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .Login-container .p-inputtext {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+  .Login-container .p-button {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  .saveData {
+    margin-bottom: 20px;
+  }
+}
