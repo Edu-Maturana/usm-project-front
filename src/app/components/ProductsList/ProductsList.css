@@ -49,15 +49,27 @@
     justify-content: center;
   }
 
-  /*.products-page-header h2 {
-    font-size: 0.5rem;
-  }*/
-
   .plist-top h2 {
     font-size: 1.2rem;
   }
 
   .plist-top .all-products-link {
     font-size: 0.8rem;
+  }
+
+  .products-page-header {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .plist-top h2 {
+    font-size: 1rem;
+  }
+
+  .plist-top .all-products-link {
+    font-size: 0.6rem;
   }
 }

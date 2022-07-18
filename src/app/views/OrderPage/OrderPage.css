@@ -22,3 +22,48 @@
 .FormStyle .ProductsCart {
   width: 50%;
 }
+
+@media (max-width: 1000px) {
+  .FormStyle .ProductsCart {
+    width: 100%;
+  }
+  .OrderPage .wrapper {
+    margin-right: 100px;
+  }
+}
+
+@media (max-width: 800px) {
+  .FormStyle .ProductsCart {
+    width: 100%;
+  }
+  .OrderPage .wrapper {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .FormStyle .ProductsCart {
+    width: 100%;
+  }
+  .OrderPage h2{
+    text-align: center;
+  }
+  .OrderPage .FormStyle {
+    flex-direction: column;
+  }
+  .OrderPage .wrapper {
+    margin-right:0;
+  }
+}
+
+@media (max-width: 400px) {
+  .FormStyle .ProductsCart {
+    width: 100%;
+  }
+  .OrderPage h2{
+    text-align: center;
+  }
+  .OrderPage .FormStyle {
+    flex-direction: column;
+  }
+}

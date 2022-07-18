@@ -10,4 +10,12 @@
         font-size: 0.6rem;
     }
 }
+
+@media (max-width: 400px) {
+    .Footer {
+        font-size: 0.6rem;
+        padding-top: 15%;
+    }
+
+}
     
