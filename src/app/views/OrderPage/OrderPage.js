@@ -14,19 +14,23 @@ export default function OrderPage() {
   return (
     <div className="OrderPage">
       <Header />
-      <h2>Carro</h2>
-      {products.length > 0 ? (
-        <div className="FormStyle">
-          <ProductsCart
-            products={products}
-            reloadCart={reloadCart}
-            setReloadCart={setReloadCart}
-          />
-          <OrderForm />
-        </div>
-      ) : (
-        <EmptyCart />
-      )}
+      <h2>Pedido</h2>
+      <div className="wrapper">
+        {products.length > 0 ? (
+          <div className="FormStyle">
+            <ProductsCart
+              products={products}
+              reloadCart={reloadCart}
+              setReloadCart={setReloadCart}
+              buttonsVisible={true}
+              onlyPriceVisible={true}
+            />
+            <OrderForm />
+          </div>
+        ) : (
+          <EmptyCart />
+        )}
+      </div>
     </div>
   );
 }

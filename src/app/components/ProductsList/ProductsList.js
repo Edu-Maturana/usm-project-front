@@ -9,6 +9,7 @@ import ProductCard from "../ProductCard/ProductCard";
 
 export default function ProductsList(props) {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const home = props.home;
   const [orderBy, setOrderBy] = useState("");
   const orders = [
@@ -19,8 +20,10 @@ export default function ProductsList(props) {
   const limit = home ? 6 : 20;
 
   useEffect(() => {
+    setLoading(true);
     getProducts(orderBy, limit).then((response) => {
       setProducts(response);
+      setLoading(false);
     });
   }, [orderBy]);
 
@@ -48,15 +51,22 @@ export default function ProductsList(props) {
         )}
       </div>
       <div className="p-products">
-        {products.map((product) => (
-          <Link
-            to={`/products/${product.ID}`}
-            key={product.id}
-            className="ProductLink"
-          >
-            <ProductCard key={product.ID} product={product} />
-          </Link>
-        ))}
+        {loading ? (
+          <i
+            className="pi pi-spin pi-spinner spina"
+            style={{ fontSize: "3em" }}
+          ></i>
+        ) : (
+          products.map((product) => (
+            <Link
+              to={`/products/${product.ID}`}
+              key={product.id}
+              className="ProductLink"
+            >
+              <ProductCard key={product.ID} product={product} />
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

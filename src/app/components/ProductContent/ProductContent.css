@@ -54,7 +54,7 @@
   flex-direction: column;
 }
 
-.CommentsSection .Comments .delete-item{
+.CommentsSection .Comments .delete-item {
   width: 10px;
   height: 10px;
   cursor: pointer;

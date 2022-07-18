@@ -3,10 +3,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-  max-height: 79vh;
+  max-height: 60vh;
   width: 100%;
   height: 100%;
   background-color: #fff;
+}
+
+.cart-items {
+  height: 100%;
+  overflow: auto;
 }
 
 .cart-item {
@@ -27,7 +32,7 @@
   margin: 10px 0;
 }
 
-.cart-item .HorizontalBar .p-button{
+.cart-item .HorizontalBar .p-button {
   background-color: #000000;
   border: 1px solid #000000;
 }
@@ -53,4 +58,14 @@
 .ProductsCart .p-button.p-button-text {
   color: #000000;
   font-size: 14px;
+}
+
+.cart-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.ProductsCart .clean-cart {
+  margin-right: 5px;
 }

@@ -17,7 +17,7 @@ import {
   getLastComments,
   getAllComments,
   createComment,
-  deleteComment
+  deleteComment,
 } from "../../api/comments";
 import useCart from "../../hooks/useCart";
 import { getToken } from "../../api/token";
@@ -27,10 +27,15 @@ moment().locale("es");
 export function ProductContent() {
   const id = window.location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { addProduct } = useCart();
   useEffect(() => {
-    getProduct(id).then((product) => setProduct(product));
+    setLoading(true);
+    getProduct(id).then((product) => {
+      setProduct(product);
+      setLoading(false);
+    });
   }, []);
 
   const getStock = (product) => {
@@ -42,46 +47,55 @@ export function ProductContent() {
 
   return (
     <div className="ProductContent">
-      <div className="ProductSection">
-        <img src={product.image} alt={product.name} />
-        <div className="ProductData">
-          <p className="Description"> {`Productos > ${product.name}`}</p>
-          <h2>{product.name}</h2>
-          <p className="Id">ID: {product.ID}</p>
-          <Rating value={5} readOnly cancel={false} />
-          <p className="Description">{product.description}</p>
-          <p className="Price">${product.price}</p>
-          <p className="Description">
-            Stock: {getStock(product) === 0 ? "Agotado" : getStock(product)}
-          </p>
-          <InputNumber
-            disabled={getStock(product) === 0}
-            className="HorizontalBar"
-            min={1}
-            max={getStock(product)}
-            value={quantity}
-            onChange={(e) => setQuantity(e.value)}
-            showButtons
-            buttonLayout="horizontal"
-            decrementButtonClassName="p-button-danger"
-            incrementButtonClassName="p-button-success"
-            incrementButtonIcon="pi pi-plus"
-            decrementButtonIcon="pi pi-minus"
-            size={1}
-            allowEmpty={false}
-          />
-          <Button
-            disabled={getStock(product) === 0}
-            className="buy"
-            onClick={() => addProduct(product.ID, quantity)}
-          >
-            Añadir al carro
-          </Button>
+      {loading ? (
+        <i
+          className="pi pi-spin pi-spinner spina"
+          style={{ fontSize: "3em" }}
+        ></i>
+      ) : (
+        <div className="ProductSection">
+          <img src={product.image} alt={product.name} />
+          <div className="ProductData">
+            <p className="Description"> {`Productos > ${product.name}`}</p>
+            <h2>{product.name}</h2>
+            <p className="Id">ID: {product.ID}</p>
+            <Rating value={5} readOnly cancel={false} />
+            <p className="Description">{product.description}</p>
+            <p className="Price">${product.price}</p>
+            <p className="Description">
+              Stock: {getStock(product) === 0 ? "Agotado" : getStock(product)}
+            </p>
+            <InputNumber
+              disabled={getStock(product) === 0}
+              className="HorizontalBar"
+              min={1}
+              max={getStock(product)}
+              value={quantity}
+              onChange={(e) => setQuantity(e.value)}
+              showButtons
+              buttonLayout="horizontal"
+              decrementButtonClassName="p-button-danger"
+              incrementButtonClassName="p-button-success"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              size={1}
+              allowEmpty={false}
+            />
+            <Button
+              disabled={getStock(product) === 0}
+              className="buy"
+              onClick={() => addProduct(product.ID, quantity)}
+            >
+              Añadir al carro
+            </Button>
+          </div>
         </div>
-      </div>
-      <div>
-        <Comments productId={id} />
-      </div>
+      )}
+      {loading ? null : (
+        <div>
+          <Comments productId={id} />
+        </div>
+      )}
     </div>
   );
 }
@@ -111,11 +125,10 @@ function Comments(props) {
         deleteComment(comment.ID).then(() => {
           toast.success("Comentario eliminado");
           getAllComments(productId).then((comments) => setComments(comments));
-        }
-        );
-      }
+        });
+      },
     });
-  }
+  };
 
   return (
     <div className="CommentsSection">
