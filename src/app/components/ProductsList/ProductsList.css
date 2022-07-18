@@ -56,10 +56,13 @@
   .plist-top .all-products-link {
     font-size: 0.8rem;
   }
-
+  .products-page-header h2{
+    display: none;
+  }
   .products-page-header {
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    padding-left: 3px;
   }
 
 }

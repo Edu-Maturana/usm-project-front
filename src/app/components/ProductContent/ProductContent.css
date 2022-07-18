@@ -104,10 +104,6 @@ small {
 
 @media (max-width: 1000px){
   .ProductContent {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 0;
     max-width: 100%;
     min-width: 100%;
   }
@@ -128,7 +124,7 @@ small {
     font-weight: bold;
   }
   .ProductContent .HorizontalBar {
-    margin-right: 0;
+    margin-right: 5px;
   }
   .ProductContent .p-button {
     background: #000000;
@@ -174,13 +170,84 @@ small {
 
 @media (max-width: 600px){
   .ProductContent {
-    padding-top: 0;
+    padding: 0;
     max-width: 100%;
     min-width: 100%;
   }
   .ProductContent img {
     width: 300px;
     height: 300px;
+    margin-right: 0;
+  }
+.ProductContent .ProductSection{
+  flex-direction: column;
+  align-items: center;
+}
+
+  .ProductContent .Description {
+    color: #555353;
+  }
+  .ProductContent .Id {
+    margin-top: -20px;
+    color: #555353;
+  }
+  .ProductContent .Price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .ProductContent .HorizontalBar {
+    margin-right: 5px;
+  }
+  .ProductContent .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+  }
+
+  .CommentsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .CommentsSection .Comments .delete-item {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .Comment {
+    min-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+  }
+  small {
+    margin-left: 10px;
+    font-weight: 100;
+    font-size: 13px;
+    color: #555353;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+}
+
+@media (max-width: 400px){
+  .ProductContent {
+    padding: 0;
+    max-width: 100%;
+    min-width: 100%;
+    justify-content: center;
+  }
+  .ProductContent img {
+    width: 200px;
+    height: 200px;
     margin-right: 0;
   }
   .ProductContent .Description {
@@ -195,7 +262,7 @@ small {
     font-weight: bold;
   }
   .ProductContent .HorizontalBar {
-    margin-right: 0;
+    margin-right: 5px;
   }
   .ProductContent .p-button {
     background: #000000;
@@ -209,7 +276,7 @@ small {
     margin-left: 10px;
   }
   .Comment {
-    min-width: 300px;
+    min-width: 250px;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 0px 20px;

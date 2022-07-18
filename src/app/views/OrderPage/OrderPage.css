@@ -60,6 +60,9 @@
   .FormStyle .ProductsCart {
     width: 100%;
   }
+  .OrderPage .FormStyle .ProductsCart {
+    display: none;
+  }
   .OrderPage h2{
     text-align: center;
   }
