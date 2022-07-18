@@ -28,7 +28,6 @@ export default function Login() {
               setSubmitting(false);
             })
             .catch((err) => {
-              console.log(err);
               toast.error("Nombre de usuario o contraseña incorrectos");
               setSubmitting(false);
             });

@@ -12,7 +12,6 @@ export function getProductsCart() {
 }
 
 export function addProductToCart(id, quantity) {
-  console.log(id, quantity);
   const cart = getProductsCart();
 
   let productAdded = {

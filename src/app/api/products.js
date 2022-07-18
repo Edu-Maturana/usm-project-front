@@ -30,7 +30,6 @@ export const createProduct = async (product) => {
       },
     }
   );
-  console.log(response.data);
 };
 
 export const updateProduct = async (product) => {

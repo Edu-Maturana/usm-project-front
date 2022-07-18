@@ -1,5 +1,4 @@
 export const saveUserData = async (name, address) => {
-  console.log("saveUserData", name, address);
   const data = {
     name,
     address,

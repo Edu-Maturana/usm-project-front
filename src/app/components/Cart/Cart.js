@@ -76,7 +76,7 @@ export function ProductsCart(props) {
         ];
         totalPriceTemp += data.price * product.quantity;
       }
-      console.log(productsTemp);
+
       setProductsData(productsTemp);
       setTotalPrice(totalPriceTemp);
       const message = {
