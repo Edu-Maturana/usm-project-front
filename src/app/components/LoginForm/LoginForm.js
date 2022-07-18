@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
 
 import useAuth from "../../hooks/useAuth";
 import { LogIn } from "../../api/auth";
@@ -20,9 +22,9 @@ export default function Login() {
             password: values.password,
           })
             .then((res) => {
+              setLoading(true);
               login(res.token);
               setTimeout(() => {
-                setLoading(true);
                 window.location.href = "/dashboard";
               }, 1000);
               setSubmitting(false);
@@ -38,20 +40,27 @@ export default function Login() {
             <h2 className="title">Iniciar sesión</h2>
             <div className="form-group">
               <label className="Label">Email</label>
-              <Field type="email" name="email" className="Input" />
+              <InputText type="email" name="email" className="Input" />
             </div>
             <div className="form-group">
               <label className="Label">Contraseña</label>
-              <Field type="password" name="password" className="Input" />
+              <InputText type="password" name="password" className="Input" />
             </div>
-            <button
+            <Button
               type="submit"
               loading={loading}
               className="submit-form"
               disabled={isSubmitting}
             >
-              {loading ? "..." : "Ingresar"}
-            </button>
+              {loading ? (
+                <i
+                  className="pi pi-spin pi-spinner"
+                  style={{ fontSize: "1.5em" }}
+                ></i>
+              ) : (
+                "Ingresar"
+              )}
+            </Button>
           </Form>
         )}
       </Formik>
