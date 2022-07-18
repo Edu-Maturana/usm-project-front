@@ -8,12 +8,13 @@ import { Checkbox } from "primereact/checkbox";
 
 import buildMessage from "../../api/whatsapp";
 import { getUserData, saveUserData } from "../../api/user";
+import { config } from "../../../config";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({});
   const message = JSON.parse(localStorage.getItem("message"));
   const userData = getUserData();
-  const whatsAppUrl = "https://wa.me/56935299088?text=";
+  const whatsAppUrl = config.WhatsAppUrl;
 
   const formik = useFormik({
     initialValues: {
