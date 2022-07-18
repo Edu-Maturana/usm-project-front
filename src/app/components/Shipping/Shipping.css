@@ -2,3 +2,15 @@
     font-weight: normal;
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    .shipping {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .shipping {
+        font-size: 10px;
+    }
+}

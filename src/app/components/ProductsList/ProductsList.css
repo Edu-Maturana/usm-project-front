@@ -42,3 +42,22 @@
   width: 100%;
   height: 100%;
 }
+
+@media (max-width: 600px) {
+  .p-products {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /*.products-page-header h2 {
+    font-size: 0.5rem;
+  }*/
+
+  .plist-top h2 {
+    font-size: 1.2rem;
+  }
+
+  .plist-top .all-products-link {
+    font-size: 0.8rem;
+  }
+}

@@ -69,3 +69,15 @@
 .ProductsCart .clean-cart {
   margin-right: 5px;
 }
+
+@media (max-width: 600px) {
+  .ProductsCart {
+    max-height: 75vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .ProductsCart {
+    max-height: 65vh;
+  }
+}

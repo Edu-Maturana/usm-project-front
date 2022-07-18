@@ -61,3 +61,13 @@
   text-decoration: underline;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .Login {
+    height: 50vh;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+}
