@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import useCart from "../../hooks/useCart";
 
 export default function OrderPage() {
-  const { getProducts } = useCart();
+  const { getProducts, updateProduct } = useCart();
   const products = getProducts();
   const [reloadCart, setReloadCart] = useState(false);
 
@@ -22,8 +22,10 @@ export default function OrderPage() {
               products={products}
               reloadCart={reloadCart}
               setReloadCart={setReloadCart}
+              updateProduct={updateProduct}
               buttonsVisible={true}
               onlyPriceVisible={true}
+              orderPage={true}
             />
             <OrderForm />
           </div>

@@ -42,11 +42,14 @@ export function ProductsCart(props) {
   const { products, reloadCart, setReloadCart, updateProduct } = props;
   const [productsData, setProductsData] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [loading, setLoading] = useState(false);
   const { removeProduct, clearCart } = useCart();
   const [product, setProduct] = useState({});
   const buttonsVisible = props.buttonsVisible;
   const onlyPrice = props.onlyPriceVisible;
+
+  useEffect(() => {
+    getProduct(id).then((product) => setProduct(product));
+  }, []);
 
   const getStock = (product) => {
     if (product.stock === 100) {
@@ -60,7 +63,6 @@ export function ProductsCart(props) {
       const productsTemp = [];
       let messageTemp = [];
       let totalPriceTemp = 0;
-      setLoading(true);
       for await (const product of products) {
         const data = await getProduct(product.id);
         productsTemp.push(data);
@@ -78,7 +80,6 @@ export function ProductsCart(props) {
 
       setProductsData(productsTemp);
       setTotalPrice(totalPriceTemp);
-      setLoading(false);
       const message = {
         products: messageTemp,
         totalPrice: totalPriceTemp,
@@ -105,61 +106,56 @@ export function ProductsCart(props) {
 
   return (
     <div className="ProductsCart">
-      {loading ? (
-        <i
-          className="pi pi-spin pi-spinner spina"
-          style={{ fontSize: "3em" }}
-        ></i>
-      ) : (
-        <div className="cart-items">
-          {productsData &&
-            productsData.map((item) => (
-              <div className="cart-item" key={item.ID}>
-                <img src={item.image} alt={item.name} className="item-img" />
-                <div className="cart-item-info">
-                  <h3 className="item-name">{item.name}</h3>
-                  <p className="item-price">
-                    Cantidad:{" "}
-                    {products.find((product) => product.id == item.ID).quantity}
-                  </p>
-                  <p className="item-price">Precio unitario: ${item.price}</p>
-                  <InputNumber
-                    disabled={getStock(product) === 0}
-                    className="HorizontalBar"
-                    min={1}
-                    max={getStock(product)}
-                    value={
-                      products.find((product) => product.id == item.ID).quantity
-                    }
-                    onChange={(e) => {
-                      updateProductFromCart(item.ID, e.value);
-                    }}
-                    showButtons
-                    buttonLayout="horizontal"
-                    decrementButtonClassName="p-button-danger"
-                    incrementButtonClassName="p-button-success"
-                    incrementButtonIcon="pi pi-plus"
-                    decrementButtonIcon="pi pi-minus"
-                    size={1}
-                    allowEmpty={false}
-                  />
-                </div>
-
-                <i
-                  className="pi pi-trash delete-item"
-                  style={{ fontSize: "1.2em" }}
-                  onClick={() => removeProductFromCart(item.ID)}
+      <div className="cart-items">
+        {productsData &&
+          productsData.map((item) => (
+            <div className="cart-item" key={item.ID}>
+              <img src={item.image} alt={item.name} className="item-img" />
+              <div className="cart-item-info">
+                <h3 className="item-name">{item.name}</h3>
+                <p className="item-price">
+                  Cantidad:{" "}
+                  {products.find((product) => product.id == item.ID).quantity}
+                </p>
+                <p className="item-price">Precio unitario: ${item.price}</p>
+                <InputNumber
+                  disabled={getStock(product) === 0}
+                  className="HorizontalBar"
+                  min={1}
+                  max={getStock(product)}
+                  value={
+                    products.find((product) => product.id == item.ID).quantity
+                  }
+                  onChange={(e) => {
+                    updateProductFromCart(item.ID, e.value);
+                  }}
+                  showButtons
+                  buttonLayout="horizontal"
+                  decrementButtonClassName="p-button-danger"
+                  incrementButtonClassName="p-button-success"
+                  incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"
+                  size={1}
+                  allowEmpty={false}
                 />
               </div>
-            ))}
-        </div>
-      )}
+
+              <i
+                className="pi pi-trash delete-item"
+                style={{ fontSize: "1.2em" }}
+                onClick={() => removeProductFromCart(item.ID)}
+              />
+            </div>
+          ))}
+      </div>
       <div className="cart-buttons">
-        {loading ? null : buttonsVisible ? (
+        {buttonsVisible ? (
           <>
-            <h3 className="total-price">
-              Precio total: <b>${totalPrice}</b>
-            </h3>
+            {totalPrice > 0 ? (
+              <h3 className="total-price">
+                Precio total: <b>${totalPrice}</b>
+              </h3>
+            ) : null}
             {onlyPrice ? null : (
               <div className="buttons-checkout">
                 <Button
