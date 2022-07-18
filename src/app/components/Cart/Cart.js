@@ -48,10 +48,6 @@ export function ProductsCart(props) {
   const buttonsVisible = props.buttonsVisible;
   const onlyPrice = props.onlyPriceVisible;
 
-  useEffect(() => {
-    getProduct(id).then((product) => setProduct(product));
-  }, []);
-
   const getStock = (product) => {
     if (product.stock === 100) {
       return 0;

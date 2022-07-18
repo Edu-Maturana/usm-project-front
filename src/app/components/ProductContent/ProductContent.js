@@ -105,10 +105,15 @@ function Comments(props) {
 
   const [commentsHidden, setCommentsHidden] = useState(true);
   const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(false);
   const token = getToken();
 
   useEffect(() => {
-    getLastComments(productId).then((comments) => setComments(comments));
+    setLoading(true);
+    getLastComments(productId).then((comments) => {
+      setComments(comments);
+      setLoading(false);
+    });
   }, []);
 
   const showAllComments = () => {
@@ -134,7 +139,12 @@ function Comments(props) {
     <div className="CommentsSection">
       <div className="Comments">
         <h2>⭐ Valoraciones ⭐</h2>
-        {comments.length > 0 ? (
+        {loading ? (
+          <i
+            className="pi pi-spin pi-spinner spina"
+            style={{ fontSize: "3em" }}
+          ></i>
+        ) : comments.length > 0 ? (
           comments.map((comment) => (
             <div className="Comment" key={comment.ID}>
               <h3>
