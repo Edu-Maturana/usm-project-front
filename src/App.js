@@ -43,7 +43,7 @@ export default function App() {
     setToken(token);
     setAuth({
       token,
-      user: jwtDecode(token).id,
+      user: jwtDecode(token).email,
     });
   };
 

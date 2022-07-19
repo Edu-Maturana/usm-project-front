@@ -9,6 +9,8 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
+import { Dialog } from "primereact/dialog";
+import jwtDecode from "jwt-decode";
 
 import {
   getProducts,
@@ -16,15 +18,30 @@ import {
   updateProduct,
   deleteProduct,
 } from "../../api/products";
-import { Dialog } from "primereact/dialog";
+import { getToken } from "../../api/token";
+import { getAdmin } from "../../api/auth";
 
 export default function ProductsTable() {
   const [products, setProducts] = useState([]);
   const [displayForm, setDisplayForm] = useState(false);
 
   useEffect(() => {
-    getProducts(0).then((data) => {
-      setProducts(data);
+    const token = getToken();
+    if (!token) {
+      window.location.href = "/";
+    }
+
+    const { email } = jwtDecode(token);
+
+    getAdmin(email).then((response) => {
+      if (response.email == email) {
+        getProducts(0).then((response) => {
+          setProducts(response);
+        });
+      } else {
+        toast.error("No tienes permisos para ver esta página");
+        window.location.href = "/";
+      }
     });
   }, []);
 
