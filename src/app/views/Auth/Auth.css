@@ -1,0 +1,26 @@
+.Auth {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+}
+
+.p-tabview .p-tabview-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-color: #000000;
+    color: #000000;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+    background-color: #000000;;
+}
+
+.Auth .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+}

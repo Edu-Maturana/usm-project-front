@@ -1,0 +1,21 @@
+.Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+    .Footer {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .Footer {
+        font-size: 0.6rem;
+        padding-top: 15%;
+    }
+
+}
+    

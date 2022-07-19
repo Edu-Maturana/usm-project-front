@@ -1,0 +1,302 @@
+.ProductContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+}
+
+.ProductContent .ProductSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ProductContent img {
+  width: 380px;
+  height: 380px;
+  margin-right: 30px;
+}
+
+.ProductContent .Description {
+  color: #555353;
+}
+
+.ProductContent .Id {
+  margin-top: -20px;
+  color: #555353;
+}
+
+.ProductContent .Price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ProductContent .HorizontalBar {
+  margin-right: 15px;
+}
+
+.ProductContent .p-button {
+  background: #000000;
+  border: 1px solid #000000;
+}
+
+.CommentsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+
+.CommentsSection .Comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentsSection .Comments .delete-item {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.p-rating .p-rating-icon.pi-star-fill {
+  color: #000;
+}
+
+.Comment {
+  min-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0px 20px;
+  margin-bottom: 10px;
+}
+
+.Comments .allCommentsButton:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+small {
+  margin-left: 10px;
+  font-weight: 100;
+  font-size: 13px;
+  color: #555353;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.form-group .p-rating {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group .p-inputtextarea {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  .ProductContent {
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .ProductContent img {
+    width: 300px;
+    height: 300px;
+    margin-right: 0;
+  }
+  .ProductContent .Description {
+    color: #555353;
+  }
+  .ProductContent .Id {
+    margin-top: -20px;
+    color: #555353;
+  }
+  .ProductContent .Price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .ProductContent .HorizontalBar {
+    margin-right: 5px;
+  }
+  .ProductContent .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+  }
+  .CommentsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+  }
+  .CommentsSection .Comments {
+    display: flex;
+    flex-direction: column;
+  }
+  .CommentsSection .Comments .delete-item {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .Comment {
+    min-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+  }
+  small {
+    margin-left: 10px;
+    font-weight: 100;
+    font-size: 13px;
+    color: #555353;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ProductContent {
+    padding: 0;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .ProductContent img {
+    width: 300px;
+    height: 300px;
+    margin-right: 0;
+  }
+  .ProductContent .ProductSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ProductContent .Description {
+    color: #555353;
+  }
+  .ProductContent .Id {
+    margin-top: -20px;
+    color: #555353;
+  }
+  .ProductContent .Price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .ProductContent .HorizontalBar {
+    margin-right: 5px;
+  }
+  .ProductContent .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+  }
+
+  .CommentsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .CommentsSection .Comments .delete-item {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .Comment {
+    min-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+  }
+  small {
+    margin-left: 10px;
+    font-weight: 100;
+    font-size: 13px;
+    color: #555353;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ProductContent {
+    padding: 0;
+    max-width: 100%;
+    min-width: 100%;
+    justify-content: center;
+  }
+  .ProductContent img {
+    width: 320px;
+    height: 320px;
+    margin-right: 0;
+  }
+  .ProductContent .Description {
+    color: #555353;
+  }
+  .ProductContent .Id {
+    margin-top: -20px;
+    color: #555353;
+  }
+  .ProductContent .Price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .ProductContent .HorizontalBar {
+    margin-right: 5px;
+  }
+  .ProductContent .p-button {
+    background: #000000;
+    border: 1px solid #000000;
+  }
+
+  .CommentsSection .Comments .delete-item {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .Comment {
+    min-width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+  }
+  small {
+    margin-left: 10px;
+    font-weight: 100;
+    font-size: 13px;
+    color: #555353;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+
+  .CommentsSection .CommentForm {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,30 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1000px;
+}
+
+@media (max-width: 1000px) {
+    .home {
+        width: 800px;
+    }
+}
+
+@media (max-width: 800px) {
+    .home {
+        width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home {
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .home {
+        width: 320px;
+    }
+}
