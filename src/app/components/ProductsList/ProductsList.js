@@ -60,7 +60,7 @@ export default function ProductsList(props) {
           products.map((product) => (
             <Link
               to={`/products/${product.ID}`}
-              key={product.id}
+              key={product.ID}
               className="ProductLink"
             >
               <ProductCard key={product.ID} product={product} />
