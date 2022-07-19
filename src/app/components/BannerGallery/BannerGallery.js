@@ -1,6 +1,7 @@
 import React from "react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { Link } from "react-router-dom";
 import "./BannerGallery.css";
 
 import { Galleria } from "primereact/galleria";
@@ -14,23 +15,26 @@ export default function BannerGallery() {
     {
       itemImageSrc: rolls,
       thumbnailImageSrc: rolls,
+      ID: 7,
       alt: "Rolls",
-      title: "Rolls de canela",
-      price: "$3.000"
+      title: "Rolls de canela 3u",
+      price: "$3.500"
     },
     {
       itemImageSrc: waffles,
       thumbnailImageSrc: waffles,
+      ID: 1,
       alt: "Waffles",
-      title: "Waffles",
-      price: "$2.000"
+      title: "Waffles 4u",
+      price: "$2.500"
     },
     {
       itemImageSrc: pancakes,
       thumbnailImageSrc: pancakes,
+      ID:10,
       alt: "Pancakes",
-      title: "Panqueques",
-      price: "$1.000"
+      title: "Panqueques 6u",
+      price: "$2.000"
     },
   ];
 
@@ -62,7 +66,9 @@ export default function BannerGallery() {
             <div className="product-data">
                 <h4 className="product-title">{item.title}</h4>
                 <p className="product-price">{item.price}</p>
+                <Link to={`/products/${item.ID}`} className="product-link">
                 <Button label="Ver producto" className="p-button-primary" />
+                </Link>
             </div>
         );
     };

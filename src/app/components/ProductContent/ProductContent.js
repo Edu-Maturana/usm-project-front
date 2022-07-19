@@ -167,7 +167,7 @@ function Comments(props) {
             </div>
           ))
         ) : (
-          <p>No hay valoraciones</p>
+          <p>No hay valoraciones.</p>
         )}
         <div>
           {comments.length >= 3 && commentsHidden ? (
@@ -229,7 +229,7 @@ function CommentForm(props) {
 
   return (
     <div className="CommentForm">
-      <h2>¡Dejanos tu comentario! 😎</h2>
+      <h2>¡Déjanos tu comentario! 😎</h2>
       <form className="form" onSubmit={formik.handleSubmit}>
         <div className="form-group">
           {getFormErrorMessage("customer")}
