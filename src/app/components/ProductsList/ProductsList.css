@@ -47,6 +47,7 @@
   .p-products {
     flex-direction: column;
     justify-content: center;
+    margin-top: 0;
   }
 
   .plist-top h2 {
@@ -54,25 +55,14 @@
   }
 
   .plist-top .all-products-link {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
-  .products-page-header h2{
+  .products-page-header h2 {
     display: none;
   }
   .products-page-header {
     flex-direction: row;
     justify-content: center;
     padding-left: 3px;
-  }
-
-}
-
-@media (max-width: 400px) {
-  .plist-top h2 {
-    font-size: 1rem;
-  }
-
-  .plist-top .all-products-link {
-    font-size: 0.6rem;
   }
 }

@@ -29,8 +29,12 @@
 
 @media (max-width: 600px) {
   .p-img {
-    height: 150px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
+  }
+
+  .p-card-info {
+    padding-left: 0;
+    color: #000;
   }
 }
-
