@@ -5,7 +5,7 @@ import "primeicons/primeicons.css";
 export default function Shipping() {
     return (
         <div className="shipping">
-            <p className='shipping-style'>📦 Repartos a Viña del Mar (Miraflores, achupallas, concon) 📦</p>
+            <p className='shipping-style'>📦 Repartos a Viña del Mar 📦</p>
         </div>
     )
 }
